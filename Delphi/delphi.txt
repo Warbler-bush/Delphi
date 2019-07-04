@@ -1,0 +1,348 @@
+﻿input.txt:
+
+
+
+
+
+
+
+
+
+FRONT-END
+
+
+
+
+
+
+
+
+
+
+BACK-END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------
+TO DO:
+-OTTIMIZZARE GLI EVENTI DI AGGIORNAMENTO DOPO UNA PAROLA
+-RICEVERE I FILE DI INPUT E OUTPUT
+
+
+DONE:
+2) finire il write on file
+3) guardare il userGroup per l'interfaccia grafica
+
+-----------------------------
+
+search:
+levenshtein algorithm -> word differences
+
+language-chinese:
+https://stackoverflow.com/questions/23720956/same-chinese-text-not-passing-equality-test
+https://github.com/serveryang/SimplifiedChinesePinYinConversion
+https://docs.microsoft.com/it-it/dotnet/api/system.threading.thread.currentculture?view=netframework-4.7.2
+https://docs.microsoft.com/en-us/globalization/locale/sorting-and-string-comparison
+
+multiple-form:
+https://stackoverflow.com/questions/7462157/how-to-work-with-multiple-pages-or-forms
+https://en.oxforddictionaries.com/grammar/word-classes-or-parts-of-speech
+
+about c#:
+https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/collections
+
+realizzazione di un progetto:
+-pensare alle story
+-pensare alle feature
+-pensare alla grafica
+-pensare alle strutture dati
+-pensare agli algoritmi
+
+
+
+STORY:
+-add words
+-add expressions
+-add novel
+-search words/expressions/novel
+-visualize all in a table
+-refresh the memory of the oldeests words
+-add words/expressions/novel that are not defined 
+-analisi con spicy, intregrazione con c#
+
+
+1) defining datastructure
+2) defining front-end
+3) background algorithms
+
+
+
+classes:
+
+Dictionary
+	-name 
+	-language
+	-dataCreation
+	
+	-words
+	-expressions
+	-novels
+	
+	+search()
+
+---------------------------------
+Text
+	-title
+	-origin
+	-note
+	-dataCreation
+	-dataLastVisit
+---------------------------------
+Word
+	-definitions
+	-forms
+	-type
+	
+	
+Definition
+	-definition
+	-synonyms
+	-contraries
+	-translated
+	
+Form
+	-form
+	-type
+	
+--------------------------------
+Expression
+	-explanation
+	-translated
+--------------------------------
+Novel
+	-text
+	-author
+	-translated
+	
+--------------------------------
+Translation
+	-dicID
+	-translated
+
+
+
+Nella scrittura del file format - fare il toString del date, non del datetime
+-------------------------------------------------------------
+file format,in the real file there aren't any space         |
+TODO: test di dizionari multipli e di eventuali traduzioni  |
+-------------------------------------------------------------
+
+
+number_of_dictionaries
+
+{
+	[Dictionary Header]
+	DicName;LAN
+	numeroparole;numeroespressioni;numeronovelle
+	[End Dictionary Header]
+
+
+	[Word]
+	{
+		title;dataCreation;dataLastVisit;type
+		<t>
+			origin
+		</t>
+		<t>
+			note
+		<t>
+		form;type;form;type;form;type[...]
+		
+		numerodefinizioni
+		{
+			<t>
+				def1
+			</t>
+		}x num_definizioni
+	}x n_words;
+
+	[Expression]
+	{
+		title; dataCreation;dataLastVisit
+		<t>
+			origin
+		</t>
+		
+		<t>
+			note
+		</t>
+
+		<t>
+			explanation
+		</t>
+
+	}x n_expressions;
+
+	{
+		index_parola;index_definizione;isThreSyn;isThereContrary
+		synonyms1-id-array ; synonyms2-id-array  ;[...]
+		contrary1-id-array ; contrary2-id-array  ;[...]
+	}x n_definizioni;
+
+	// baco, se non ci sono definizioni, comunque possono esserci
+	// esperssioni che sono sinonimi tra di loro
+	//alla fine delle righe mancano si devono togliere i punti e virgola.
+
+	[Novel]
+	{
+		title; dataCreation;dataLastVisit;author
+		<t>
+			origin
+		</t>
+
+		<t>
+			note
+		</t>
+
+		<t>
+			text
+		</t>
+
+	}x n_novels;
+
+}x n_dicionaries;
+
+
+
+
+{
+	{
+	    {
+			word-id; def-id; idDict - translated1-id-array ; idDict - translated2-id-array ;[...]
+		}x n_definitions;
+	}x n_words;
+
+	{
+		expression-id   ; idDict - translated1-id-array ; idDict - translated2-id-array ;[...]
+	}x n_expressions;
+
+	{
+	    novel-id ; idDict - translated-id-novel ; [....]
+	}x n_novels;
+}x n_dictionaries;
+
+----------------------------------------------------------------------
+
+
+
+
+usefull commands:
+System.Diagnostics.Debug.WriteLine(line);
+Regex.Split("this is a test", @"\s");
+shotcut: ctrl + ,
+
+
+
+(string word, string origin, string note, DateTime creationDate, DateTime lastVisit_date, string type
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Patterns:
+https://en.wikibooks.org/wiki/Computer_Science_Design_Patterns
+
+
+
+----------------------------------------------------------------------
+Null-Collation
+
+Null-collation(??) is an important operator in C#. As per the MSDN definition: 
+The ?? operator is called the null-coalescing operator and is used to define 
+a default value for nullable value types or reference types. It returns the
+left-hand operand if the operand is not null; otherwise, it returns the right operand.
+The C# Null Coalescing Operator (??)  is a binary operator that simplifies checking for null paramss.
+It is used to assign a default value to a variable when the value is null.
+
+
+---------------------------------------------------------------------
+
+
+If you are worried that your loops are creating collection pressure, and you wish to avoid collection
+pressure for performance reasons then I advise that you pursue a pooling strategy. It would be wise to start 
+with an  explicit pooling strategy; that is:
+while(whatever)
+{
+    Frob f = FrobPool.FetchFromPool();
+    f.Blah();
+    FrobPool.ReturnToPool(f);
+}
+rather than attempting to do automatic pooling using a resurrecting finalizer. I advise against both finalizers and object resurrection in general unless you are an expert on finalization semantics.
+
+The pool of course allocates a new Frob if there is not one in the pool. If there is one in the pool, then it hands it out and removes it from the pool until it is put back in. (If you forget to put a Frob back in the pool, the GC will get to it eventually.) By pursuing a pooling strategy you cause the GC to eventually move all the Frobs to the generation 2 heap, instead of creating lots of collection pressure in the generation 0 heap. The collection pressure then disappears because no new Frobs are allocated. If something else is producing collection pressure, the Frobs are all safely in the gen 2 heap where they are rarely visited.
+
+This of course is the exact opposite of the strategy you described; the whole point of the pooling strategy is to cause objects to hang around forever. Objects hanging around forever is a good thing if you're going to use them.
+
+Of course, do not make these sorts of changes before you know via profiling that you have a performance problem due to collection pressure! It is rare to have such a problem on the desktop CLR; it is rather more common on the compact CLR.
+
+More generally, if you are the kind of person who feels uncomfortable having a memory manager clean up for you on its schedule, then C# is not the right language for you. Consider C instead.
+
+-------------------------------------------------------------------------------
