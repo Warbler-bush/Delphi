@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinFormUtilities;
 
 namespace Delphi
 {
@@ -17,28 +12,50 @@ namespace Delphi
             InitializeComponent();
         }
 
+
+        
+
         public void setWord(Datastructure.Word wrd)
         {
+            
             lblTitle.Text = wrd.title;
-            lblTipo.Text = wrd.getType();
-            lblOrigineTesto.Text = wrd.origin;
-            lblNotaTesto.Text = wrd.note;
+            lblType.Text = wrd.getType();
+            
+            
+            txtOriginText.Text = wrd.origin;
+            Tuple<int,int> location = basicUtilities.resizeTextBox(txtOriginText);
+            lblNota.Location = new Point ( location.Item1,location.Item2 ) ;
 
-            lblFormTesto.Text = "";
+            txtNoteText.Text = wrd.note;
+            location = basicUtilities.resizeTextBox(txtNoteText);
+            lblForms.Location = new Point(location.Item1, location.Item2);
+
+            // 20 px la distanza in verticale.
+
+
+            txtFormsText.Text = "";
             foreach (Datastructure.Form frm in wrd.getForms())
             {
-                lblFormTesto.Text += frm.form + " (" + frm.type + ")" + " ";
+                txtFormsText.Text += frm.form + " (" + frm.type + ")" + " ";
             }
 
-            lblDefinitionsTesto.Text = "";
+            location = basicUtilities.resizeTextBox(txtFormsText);
+            lblDefinition.Location = new Point(location.Item1, location.Item2);
+
+            txtDefinitionsText.Text = "";
+            
             int i = 0;
             foreach (Datastructure.Definition def in wrd.GetDefinitions())
             {
-                lblDefinitionsTesto.Text += i+")" + def.definition+ "\n";
+                txtDefinitionsText.Text += (i+1)+")" + def.definition+ "\r\n";
+                txtDefinitionsText.Text += "\r\n"+ "----------------------------------------------------" + "\r\n" + "\r\n";
+
                 i++;
             }
+            basicUtilities.resizeTextBox(txtDefinitionsText);
+            pnlView.Height = txtDefinitionsText.Location.Y + 10;
         }
 
-        
+
     }
 }

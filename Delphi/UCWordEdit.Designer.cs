@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCWordEdit));
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnRemove = new System.Windows.Forms.Button();
             this.lblSeperator = new System.Windows.Forms.Label();
             this.lblNumDef = new System.Windows.Forms.Label();
             this.lblCurDef = new System.Windows.Forms.Label();
@@ -66,7 +67,6 @@
             this.lblType = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.pnlWord = new System.Windows.Forms.TableLayoutPanel();
-            this.btnRemove = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.panel1.SuspendLayout();
@@ -100,10 +100,20 @@
             this.panel3.Controls.Add(this.lblCon);
             this.panel3.Controls.Add(this.lblSino);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(3, 513);
+            this.panel3.Location = new System.Drawing.Point(3, 717);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(379, 200);
+            this.panel3.Size = new System.Drawing.Size(379, 210);
             this.panel3.TabIndex = 6;
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.Location = new System.Drawing.Point(92, 117);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(75, 23);
+            this.btnRemove.TabIndex = 45;
+            this.btnRemove.Text = "elimina";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // lblSeperator
             // 
@@ -263,9 +273,9 @@
             this.panel1.Controls.Add(this.pictureBox4);
             this.panel1.Controls.Add(this.lblDefinition);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 387);
+            this.panel1.Location = new System.Drawing.Point(3, 541);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(379, 120);
+            this.panel1.Size = new System.Drawing.Size(379, 170);
             this.panel1.TabIndex = 4;
             // 
             // txtDefinizione
@@ -277,7 +287,7 @@
             this.txtDefinizione.Multiline = true;
             this.txtDefinizione.Name = "txtDefinizione";
             this.txtDefinizione.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtDefinizione.Size = new System.Drawing.Size(349, 68);
+            this.txtDefinizione.Size = new System.Drawing.Size(349, 124);
             this.txtDefinizione.TabIndex = 6;
             // 
             // pictureBox4
@@ -304,9 +314,9 @@
             this.pnlForm.Controls.Add(this.txtForme);
             this.pnlForm.Controls.Add(this.lblForm);
             this.pnlForm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlForm.Location = new System.Drawing.Point(3, 285);
+            this.pnlForm.Location = new System.Drawing.Point(3, 385);
             this.pnlForm.Name = "pnlForm";
-            this.pnlForm.Size = new System.Drawing.Size(379, 96);
+            this.pnlForm.Size = new System.Drawing.Size(379, 150);
             this.pnlForm.TabIndex = 3;
             // 
             // txtForme
@@ -318,7 +328,7 @@
             this.txtForme.Multiline = true;
             this.txtForme.Name = "txtForme";
             this.txtForme.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtForme.Size = new System.Drawing.Size(347, 53);
+            this.txtForme.Size = new System.Drawing.Size(347, 116);
             this.txtForme.TabIndex = 4;
             // 
             // lblForm
@@ -337,9 +347,9 @@
             this.pnlNota.Controls.Add(this.pictureBox2);
             this.pnlNota.Controls.Add(this.lblNota);
             this.pnlNota.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlNota.Location = new System.Drawing.Point(3, 179);
+            this.pnlNota.Location = new System.Drawing.Point(3, 229);
             this.pnlNota.Name = "pnlNota";
-            this.pnlNota.Size = new System.Drawing.Size(379, 100);
+            this.pnlNota.Size = new System.Drawing.Size(379, 150);
             this.pnlNota.TabIndex = 2;
             // 
             // txtNota
@@ -351,13 +361,13 @@
             this.txtNota.Multiline = true;
             this.txtNota.Name = "txtNota";
             this.txtNota.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtNota.Size = new System.Drawing.Size(347, 53);
+            this.txtNota.Size = new System.Drawing.Size(347, 87);
             this.txtNota.TabIndex = 6;
             // 
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(3, 92);
+            this.pictureBox3.Location = new System.Drawing.Point(3, 133);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(352, 14);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -391,7 +401,7 @@
             this.pnlOrigine.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlOrigine.Location = new System.Drawing.Point(3, 73);
             this.pnlOrigine.Name = "pnlOrigine";
-            this.pnlOrigine.Size = new System.Drawing.Size(379, 100);
+            this.pnlOrigine.Size = new System.Drawing.Size(379, 150);
             this.pnlOrigine.TabIndex = 1;
             // 
             // txtOrigine
@@ -403,7 +413,7 @@
             this.txtOrigine.Multiline = true;
             this.txtOrigine.Name = "txtOrigine";
             this.txtOrigine.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtOrigine.Size = new System.Drawing.Size(347, 53);
+            this.txtOrigine.Size = new System.Drawing.Size(347, 103);
             this.txtOrigine.TabIndex = 3;
             // 
             // pictureBox1
@@ -489,16 +499,6 @@
             this.pnlWord.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlWord.Size = new System.Drawing.Size(385, 530);
             this.pnlWord.TabIndex = 1;
-            // 
-            // btnRemove
-            // 
-            this.btnRemove.Location = new System.Drawing.Point(92, 117);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(75, 23);
-            this.btnRemove.TabIndex = 45;
-            this.btnRemove.Text = "elimina";
-            this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // UCWordEdit
             // 

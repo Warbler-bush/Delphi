@@ -1,4 +1,4 @@
-﻿namespace Apolly
+﻿namespace Delphi
 {
     partial class DelphiMain
     {
@@ -30,8 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DelphiMain));
             this.pnlAll = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.table = new System.Windows.Forms.TableLayoutPanel();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.lblAll = new System.Windows.Forms.Label();
             this.txtSearched = new System.Windows.Forms.TextBox();
             this.btnMain = new System.Windows.Forms.Button();
             this.lblExpre = new System.Windows.Forms.Label();
@@ -43,54 +44,69 @@
             this.btnBackward = new System.Windows.Forms.Button();
             this.btnRemind = new System.Windows.Forms.Button();
             this.pnlBottom = new System.Windows.Forms.Panel();
+            this.lblDictName = new System.Windows.Forms.Label();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnOptions = new System.Windows.Forms.PictureBox();
             this.btnAdd = new System.Windows.Forms.PictureBox();
             this.pnlMain = new System.Windows.Forms.Panel();
+            this.pnlAddChoice = new System.Windows.Forms.Panel();
+            this.lblAddDictionary = new System.Windows.Forms.Label();
+            this.lblAddNovel = new System.Windows.Forms.Label();
+            this.lblAddExpression = new System.Windows.Forms.Label();
+            this.lblAddWord = new System.Windows.Forms.Label();
+            this.btnDictionary = new System.Windows.Forms.PictureBox();
+            this.btnNovel = new System.Windows.Forms.PictureBox();
+            this.btnExpression = new System.Windows.Forms.PictureBox();
+            this.btnWord = new System.Windows.Forms.PictureBox();
             this.txtMain = new System.Windows.Forms.RichTextBox();
             this.pnlAll.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.table.SuspendLayout();
             this.pnlMenu.SuspendLayout();
             this.pnlBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnOptions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
             this.pnlMain.SuspendLayout();
+            this.pnlAddChoice.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDictionary)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnNovel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnExpression)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnWord)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlAll
             // 
             this.pnlAll.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.pnlAll.Controls.Add(this.tableLayoutPanel1);
+            this.pnlAll.Controls.Add(this.table);
             this.pnlAll.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlAll.Location = new System.Drawing.Point(0, 0);
             this.pnlAll.Name = "pnlAll";
             this.pnlAll.Size = new System.Drawing.Size(390, 627);
             this.pnlAll.TabIndex = 3;
             // 
-            // tableLayoutPanel1
+            // table
             // 
-            this.tableLayoutPanel1.AutoScroll = true;
-            this.tableLayoutPanel1.AutoSize = true;
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.pnlMenu, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.pnlBottom, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.pnlMain, 0, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.965517F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 91.03448F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(390, 630);
-            this.tableLayoutPanel1.TabIndex = 2;
+            this.table.AutoScroll = true;
+            this.table.AutoSize = true;
+            this.table.ColumnCount = 1;
+            this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.table.Controls.Add(this.pnlMenu, 0, 0);
+            this.table.Controls.Add(this.pnlBottom, 0, 2);
+            this.table.Controls.Add(this.pnlMain, 0, 1);
+            this.table.Dock = System.Windows.Forms.DockStyle.Top;
+            this.table.Location = new System.Drawing.Point(0, 0);
+            this.table.Name = "table";
+            this.table.RowCount = 3;
+            this.table.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.table.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.table.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.table.Size = new System.Drawing.Size(390, 623);
+            this.table.TabIndex = 2;
             // 
             // pnlMenu
             // 
             this.pnlMenu.BackColor = System.Drawing.Color.White;
+            this.pnlMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pnlMenu.Controls.Add(this.lblAll);
             this.pnlMenu.Controls.Add(this.txtSearched);
             this.pnlMenu.Controls.Add(this.btnMain);
             this.pnlMenu.Controls.Add(this.lblExpre);
@@ -106,6 +122,17 @@
             this.pnlMenu.Name = "pnlMenu";
             this.pnlMenu.Size = new System.Drawing.Size(384, 46);
             this.pnlMenu.TabIndex = 3;
+            // 
+            // lblAll
+            // 
+            this.lblAll.AutoSize = true;
+            this.lblAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAll.Location = new System.Drawing.Point(294, 32);
+            this.lblAll.Name = "lblAll";
+            this.lblAll.Size = new System.Drawing.Size(17, 16);
+            this.lblAll.TabIndex = 45;
+            this.lblAll.Text = "A";
+            this.lblAll.Click += new System.EventHandler(this.lblAll_Click);
             // 
             // txtSearched
             // 
@@ -199,6 +226,7 @@
             this.btnForward.Size = new System.Drawing.Size(28, 31);
             this.btnForward.TabIndex = 35;
             this.btnForward.UseVisualStyleBackColor = true;
+            this.btnForward.Click += new System.EventHandler(this.btnForward_Click);
             // 
             // btnBackward
             // 
@@ -211,6 +239,7 @@
             this.btnBackward.Size = new System.Drawing.Size(28, 31);
             this.btnBackward.TabIndex = 34;
             this.btnBackward.UseVisualStyleBackColor = false;
+            this.btnBackward.Click += new System.EventHandler(this.btnBackward_Click);
             // 
             // btnRemind
             // 
@@ -229,14 +258,26 @@
             // pnlBottom
             // 
             this.pnlBottom.AutoSize = true;
+            this.pnlBottom.Controls.Add(this.lblDictName);
             this.pnlBottom.Controls.Add(this.btnRefresh);
             this.pnlBottom.Controls.Add(this.btnOptions);
             this.pnlBottom.Controls.Add(this.btnAdd);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBottom.Location = new System.Drawing.Point(3, 583);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(384, 44);
+            this.pnlBottom.Size = new System.Drawing.Size(384, 37);
             this.pnlBottom.TabIndex = 4;
+            // 
+            // lblDictName
+            // 
+            this.lblDictName.AutoSize = true;
+            this.lblDictName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDictName.Location = new System.Drawing.Point(156, 8);
+            this.lblDictName.Name = "lblDictName";
+            this.lblDictName.Size = new System.Drawing.Size(97, 24);
+            this.lblDictName.TabIndex = 69;
+            this.lblDictName.Text = "Dict Name";
+            this.lblDictName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnRefresh
             // 
@@ -248,6 +289,7 @@
             this.btnRefresh.Size = new System.Drawing.Size(31, 31);
             this.btnRefresh.TabIndex = 68;
             this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // btnOptions
             // 
@@ -258,6 +300,7 @@
             this.btnOptions.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnOptions.TabIndex = 67;
             this.btnOptions.TabStop = false;
+            this.btnOptions.Click += new System.EventHandler(this.btnOptions_Click);
             // 
             // btnAdd
             // 
@@ -272,17 +315,118 @@
             // 
             // pnlMain
             // 
+            this.pnlMain.AutoScroll = true;
             this.pnlMain.Controls.Add(this.txtMain);
+            this.pnlMain.Controls.Add(this.pnlAddChoice);
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(3, 55);
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.Size = new System.Drawing.Size(384, 522);
             this.pnlMain.TabIndex = 5;
             // 
+            // pnlAddChoice
+            // 
+            this.pnlAddChoice.Controls.Add(this.lblAddDictionary);
+            this.pnlAddChoice.Controls.Add(this.lblAddNovel);
+            this.pnlAddChoice.Controls.Add(this.lblAddExpression);
+            this.pnlAddChoice.Controls.Add(this.lblAddWord);
+            this.pnlAddChoice.Controls.Add(this.btnDictionary);
+            this.pnlAddChoice.Controls.Add(this.btnNovel);
+            this.pnlAddChoice.Controls.Add(this.btnExpression);
+            this.pnlAddChoice.Controls.Add(this.btnWord);
+            this.pnlAddChoice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlAddChoice.Location = new System.Drawing.Point(0, 0);
+            this.pnlAddChoice.Name = "pnlAddChoice";
+            this.pnlAddChoice.Size = new System.Drawing.Size(384, 522);
+            this.pnlAddChoice.TabIndex = 16;
+            // 
+            // lblAddDictionary
+            // 
+            this.lblAddDictionary.AutoSize = true;
+            this.lblAddDictionary.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAddDictionary.Location = new System.Drawing.Point(193, 413);
+            this.lblAddDictionary.Name = "lblAddDictionary";
+            this.lblAddDictionary.Size = new System.Drawing.Size(190, 25);
+            this.lblAddDictionary.TabIndex = 15;
+            this.lblAddDictionary.Text = "ADD DICTIONARY";
+            // 
+            // lblAddNovel
+            // 
+            this.lblAddNovel.AutoSize = true;
+            this.lblAddNovel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAddNovel.Location = new System.Drawing.Point(36, 413);
+            this.lblAddNovel.Name = "lblAddNovel";
+            this.lblAddNovel.Size = new System.Drawing.Size(133, 25);
+            this.lblAddNovel.TabIndex = 14;
+            this.lblAddNovel.Text = "ADD NOVEL";
+            // 
+            // lblAddExpression
+            // 
+            this.lblAddExpression.AutoSize = true;
+            this.lblAddExpression.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAddExpression.Location = new System.Drawing.Point(186, 212);
+            this.lblAddExpression.Name = "lblAddExpression";
+            this.lblAddExpression.Size = new System.Drawing.Size(197, 25);
+            this.lblAddExpression.TabIndex = 13;
+            this.lblAddExpression.Text = "ADD EXPRESSION";
+            // 
+            // lblAddWord
+            // 
+            this.lblAddWord.AutoSize = true;
+            this.lblAddWord.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAddWord.Location = new System.Drawing.Point(36, 212);
+            this.lblAddWord.Name = "lblAddWord";
+            this.lblAddWord.Size = new System.Drawing.Size(128, 25);
+            this.lblAddWord.TabIndex = 12;
+            this.lblAddWord.Text = "ADD WORD";
+            // 
+            // btnDictionary
+            // 
+            this.btnDictionary.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.btnDictionary.Image = ((System.Drawing.Image)(resources.GetObject("btnDictionary.Image")));
+            this.btnDictionary.Location = new System.Drawing.Point(216, 250);
+            this.btnDictionary.Name = "btnDictionary";
+            this.btnDictionary.Size = new System.Drawing.Size(150, 150);
+            this.btnDictionary.TabIndex = 11;
+            this.btnDictionary.TabStop = false;
+            this.btnDictionary.Click += new System.EventHandler(this.btnDictionary_Click);
+            // 
+            // btnNovel
+            // 
+            this.btnNovel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.btnNovel.Image = ((System.Drawing.Image)(resources.GetObject("btnNovel.Image")));
+            this.btnNovel.Location = new System.Drawing.Point(27, 250);
+            this.btnNovel.Name = "btnNovel";
+            this.btnNovel.Size = new System.Drawing.Size(150, 150);
+            this.btnNovel.TabIndex = 10;
+            this.btnNovel.TabStop = false;
+            this.btnNovel.Click += new System.EventHandler(this.btnNovel_Click);
+            // 
+            // btnExpression
+            // 
+            this.btnExpression.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.btnExpression.Image = ((System.Drawing.Image)(resources.GetObject("btnExpression.Image")));
+            this.btnExpression.Location = new System.Drawing.Point(216, 55);
+            this.btnExpression.Name = "btnExpression";
+            this.btnExpression.Size = new System.Drawing.Size(150, 150);
+            this.btnExpression.TabIndex = 9;
+            this.btnExpression.TabStop = false;
+            this.btnExpression.Click += new System.EventHandler(this.btnExpression_Click);
+            // 
+            // btnWord
+            // 
+            this.btnWord.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.btnWord.Image = ((System.Drawing.Image)(resources.GetObject("btnWord.Image")));
+            this.btnWord.Location = new System.Drawing.Point(27, 55);
+            this.btnWord.Name = "btnWord";
+            this.btnWord.Size = new System.Drawing.Size(150, 150);
+            this.btnWord.TabIndex = 8;
+            this.btnWord.TabStop = false;
+            this.btnWord.Click += new System.EventHandler(this.btnWord_Click);
+            // 
             // txtMain
             // 
             this.txtMain.BackColor = System.Drawing.Color.DimGray;
-            this.txtMain.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtMain.Cursor = System.Windows.Forms.Cursors.Default;
             this.txtMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtMain.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -306,11 +450,11 @@
             this.MinimumSize = new System.Drawing.Size(410, 670);
             this.Name = "DelphiMain";
             this.Text = "Delphi";
-            this.Load += new System.EventHandler(this.ApollyMain_Load);
+            this.Load += new System.EventHandler(this.DelphiMain_Load);
             this.pnlAll.ResumeLayout(false);
             this.pnlAll.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.table.ResumeLayout(false);
+            this.table.PerformLayout();
             this.pnlMenu.ResumeLayout(false);
             this.pnlMenu.PerformLayout();
             this.pnlBottom.ResumeLayout(false);
@@ -318,6 +462,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnOptions)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
             this.pnlMain.ResumeLayout(false);
+            this.pnlAddChoice.ResumeLayout(false);
+            this.pnlAddChoice.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDictionary)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnNovel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnExpression)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnWord)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -325,7 +475,7 @@
         #endregion
 
         private System.Windows.Forms.Panel pnlAll;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel table;
         private System.Windows.Forms.Panel pnlMenu;
         private System.Windows.Forms.Label lblExpre;
         private System.Windows.Forms.Label lblNovel;
@@ -343,6 +493,17 @@
         private System.Windows.Forms.RichTextBox txtMain;
         private System.Windows.Forms.Button btnMain;
         private System.Windows.Forms.TextBox txtSearched;
+        private System.Windows.Forms.Label lblAll;
+        private System.Windows.Forms.Label lblDictName;
+        private System.Windows.Forms.Panel pnlAddChoice;
+        private System.Windows.Forms.Label lblAddDictionary;
+        private System.Windows.Forms.Label lblAddNovel;
+        private System.Windows.Forms.Label lblAddExpression;
+        private System.Windows.Forms.Label lblAddWord;
+        private System.Windows.Forms.PictureBox btnDictionary;
+        private System.Windows.Forms.PictureBox btnNovel;
+        private System.Windows.Forms.PictureBox btnExpression;
+        private System.Windows.Forms.PictureBox btnWord;
     }
 }
 

@@ -1,6 +1,6 @@
 ﻿namespace Delphi
 {
-    partial class UCAdd
+    partial class UCAddWord
     {
         /// <summary> 
         /// Required designer variable.
@@ -303,11 +303,10 @@
             this.label2.TabIndex = 31;
             this.label2.Text = "* Separare con il punto e virgola";
             // 
-            // UCAdd
+            // UCAddWord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtTypeForm);
@@ -324,8 +323,8 @@
             this.Controls.Add(this.lblOri);
             this.Controls.Add(this.txtWord);
             this.Controls.Add(this.lblWord);
-            this.Name = "UCAdd";
-            this.Size = new System.Drawing.Size(385, 536);
+            this.Name = "UCAddWord";
+            this.Size = new System.Drawing.Size(367, 536);
             this.pnlDef.ResumeLayout(false);
             this.pnlDef.PerformLayout();
             this.ResumeLayout(false);

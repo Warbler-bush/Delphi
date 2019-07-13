@@ -5,23 +5,22 @@ using System.Text.RegularExpressions;
 
 using Utility;
 using Datastructure;
-using Apolly;
 
 namespace Delphi
 {
-    public partial class UCAdd : UserControl
+    public partial class UCAddWord : UserControl
     {
 
         private WordBuilder wrdBuilder;
         private DelphiMain delphiMain;
         private Regex rgx = new Regex(@"^[a-zA-Z0-9_;]+$");
         private Regex rgxText = new Regex(@"^[a-zA-Z0-9_ \n]+$");
-        private DictManger dictManger = DictManger.Manger();
+        private DictManger dictManger = DictManger.Manager();
 
         public void bindDelphiMain(DelphiMain delphi)
         { delphiMain = delphi;}
 
-        public UCAdd()
+        public UCAddWord()
         {
             InitializeComponent();
             initComponents();

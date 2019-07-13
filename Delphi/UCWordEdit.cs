@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using Datastructure;
@@ -20,7 +14,7 @@ namespace Delphi
         private int curDef = 0;
         private Regex rgx = new Regex(@"^[a-zA-Z0-9_;]+$");
         private Regex rgxText = new Regex(@"^[a-zA-Z0-9_ \n]+$");
-        private DictManger dictManger = DictManger.Manger();
+        private DictManger dictManger = DictManger.Manager();
 
         public UCWordEdit()
         {

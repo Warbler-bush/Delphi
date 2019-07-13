@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -49,7 +49,7 @@
     <DocumentationFile>bin\Release\Delphi.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Apolly.Program</StartupObject>
+    <StartupObject>Delphi.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ChnCharInfo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=18f031bd02e5e291, processorArchitecture=MSIL">
@@ -78,13 +78,14 @@
     <Compile Include="DelphiMain.Designer.cs">
       <DependentUpon>DelphiMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmSearch.cs">
+    <Compile Include="frmSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmSearch.Designer.cs">
-      <DependentUpon>frmSearch.cs</DependentUpon>
+    <Compile Include="frmSettings.Designer.cs">
+      <DependentUpon>frmSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="lib\Datastructure.cs" />
+    <Compile Include="lib\WinFormUtilities.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs">
@@ -94,11 +95,47 @@
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
     <Compile Include="lib\Utilities.cs" />
-    <Compile Include="UCAdd.cs">
+    <Compile Include="UCAddDictionary.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UCAdd.Designer.cs">
-      <DependentUpon>UCAdd.cs</DependentUpon>
+    <Compile Include="UCAddDictionary.Designer.cs">
+      <DependentUpon>UCAddDictionary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCAddExpression.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCAddExpression.Designer.cs">
+      <DependentUpon>UCAddExpression.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCAddWord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCAddWord.Designer.cs">
+      <DependentUpon>UCAddWord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCExpressionView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCExpressionView.Designer.cs">
+      <DependentUpon>UCExpressionView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCAddNovel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCAddNovel.Designer.cs">
+      <DependentUpon>UCAddNovel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCNovelEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCNovelEdit.Designer.cs">
+      <DependentUpon>UCNovelEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCNovelView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCNovelView.Designer.cs">
+      <DependentUpon>UCNovelView.cs</DependentUpon>
     </Compile>
     <Compile Include="UCText.cs">
       <SubType>UserControl</SubType>
@@ -119,14 +156,41 @@
     <Compile Include="UCWordView.Designer.cs">
       <DependentUpon>UCWordView.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCExpressionEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCExpressionEdit.Designer.cs">
+      <DependentUpon>UCExpressionEdit.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="frmSettings.resx">
+      <DependentUpon>frmSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCAddDictionary.resx">
+      <DependentUpon>UCAddDictionary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCAddExpression.resx">
+      <DependentUpon>UCAddExpression.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCExpressionEdit.resx">
+      <DependentUpon>UCExpressionEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCExpressionView.resx">
+      <DependentUpon>UCExpressionView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCAddNovel.resx">
+      <DependentUpon>UCAddNovel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCNovelEdit.resx">
+      <DependentUpon>UCNovelEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCNovelView.resx">
+      <DependentUpon>UCNovelView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCText.resx">
       <DependentUpon>UCText.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DelphiMain.resx">
       <DependentUpon>DelphiMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmSearch.resx">
-      <DependentUpon>frmSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -141,8 +205,8 @@
     <EmbeddedResource Include="Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UCAdd.resx">
-      <DependentUpon>UCAdd.cs</DependentUpon>
+    <EmbeddedResource Include="UCAddWord.resx">
+      <DependentUpon>UCAddWord.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCWordEdit.resx">
       <DependentUpon>UCWordEdit.cs</DependentUpon>

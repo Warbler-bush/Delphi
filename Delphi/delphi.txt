@@ -1,4 +1,29 @@
-﻿input.txt:
+﻿TRANSLATION MANAGMENT:
+1) the translated word can be in multiple dictionaries so it's not unique. When we associate a word with the translated one , its ambiguous which one is refered
+SOLUTION:
+Every dictionary has unique words, so they dont have duplicates, but a word can repeat in multiple dictionaries, however whene you associate a word with translation
+the program will ask which dictionary it has to link.
+
+
+TABLE SCROLL: (RISOLTO)
+Le celle dentro le tabelle possono superare la grandezza della tabella stessa però lo scroll non funzionare in questo caso.
+La soluzione migliore è usare il padding e estendere le dimensioni tramite il codice.
+
+FIND - STESSO TITOLO PER NOVELLA, PAROLA E ESPRESSIONE:
+la find cerca per titolo, logicamente parlando il titolo dovrebbe al massimo appartenere a 3 text di tipo eterogeneo.
+Tuttavia con la struttura del Trie di ora, il programma non accetta lo stesso titolo per multipli text di tipo diverso.
+
+
+OTTIMIZZARE RAM UTILIZZATA DAL TRIE:
+se si effettua uno snapshot della memoria utilizzata si può osservare che gran parte di essa è occupata dal Trie
+
+REFRESH HA BISOGNO DI UNA CLASSE OPERATION:
+poichè per aggiornare la visualizzazione si deve ripetere il reperimento dei dati, si dovrebbe creare un metodo 
+"operation" che possa essere rifatto, poichè dopo un operazione l'unico modo per aggiornare è quello di rieffettuare
+il reperimento dei dati e ricaricare.
+
+
+input.txt:
 
 
 

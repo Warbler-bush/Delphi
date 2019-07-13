@@ -1,35 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Datastructure;
-using Apolly;
 
 namespace Delphi
 {
     public partial class UCText : UserControl
     {
 
-        private DictManger dictManger = DictManger.Manger();
+        private DictManger dictManger = DictManger.Manager();
         private Text txt = null;
         private DelphiMain delphi;
 
         public UCText(Text text,int index)
         {
+
             txt = text;
             InitializeComponent();
-            lblIndex.Text = index.ToString()+")";
-            lblWord.Text = text.title;
+            lblTitle.Text = index.ToString() + ") " + text.title;
 
             if(text.GetType() == typeof(Word))
             {
                 Word wrd = (Word) text;
-                lblWord.Text += "( "+wrd.getType()+" )";
+                lblTitle.Text += "( "+wrd.getType()+" )";
             }
         }
 
@@ -42,16 +34,72 @@ namespace Delphi
 
         private void btnView_Click(object sender, EventArgs e)
         {
-            delphi.getUCWordView().setWord((Word)txt);
-            delphi.visualize(DelphiMain.PNL_VIEW);
+            resetVisibilityOfViews();
+            if (txt.GetType() == typeof(Word))
+            {
+                delphi.UCWordView1.setWord((Word)txt);
+                delphi.UCWordView1.Visible = true;
+            }
+
+            if (txt.GetType() == typeof(Expression))
+            {
+                delphi.UCExpView1.setExpression((Expression)txt);
+                delphi.UCExpView1.Visible = true;
+            }
+
+            if (txt.GetType() == typeof(Novel))
+            {
+                delphi.UCNovelView1.setNovel((Novel)txt);
+                delphi.UCNovelView1.Visible = true;
+            }
+
+            delphi.changePanel(DelphiMain.PNL_VIEW);
+
         }
+
+        private void resetVisibilityOfViews()
+        {
+            delphi.UCWordView1.Visible = false;
+            delphi.UCExpView1.Visible = false;
+            delphi.UCNovelView1.Visible = false;
+        }
+
+
+
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            delphi.getUCWordEdit().setWord((Word)txt);
-            delphi.visualize(DelphiMain.PNL_EDIT);
+
+            resetVisibilityOfEdits();
+
+            if (txt.GetType() == typeof(Word))
+            {
+                delphi.UCWordEdit1.setWord((Word)txt);
+                delphi.UCWordEdit1.Visible = true;
+            }
+
+            if (txt.GetType() == typeof(Expression))
+            {
+                delphi.UCExpEdit1.setExpression((Expression)txt);
+                delphi.UCExpEdit1.Visible = true;
+            }
+
+            if (txt.GetType() == typeof(Novel))
+            {
+                delphi.UCNovelEdit1.setNovel((Novel)txt);
+                delphi.UCNovelEdit1.Visible = true;
+            }
+
+            delphi.changePanel(DelphiMain.PNL_EDIT);
+
         }
 
+        private void resetVisibilityOfEdits()
+        {
+            delphi.UCWordEdit1.Visible = false;
+            delphi.UCExpEdit1.Visible = false;
+            delphi.UCNovelEdit1.Visible = false;
+        }
 
         public void bindDelphiMain(DelphiMain delphi)
         {

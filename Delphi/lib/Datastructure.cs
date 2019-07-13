@@ -38,6 +38,27 @@ namespace Datastructure
             }
             return false;
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public bool setCurDict(int idx)
+        {
+            if(idx >= 0 && idx < dicts.Count) { 
+                curDict = dicts[idx];
+                return true;
+            }
+            return false;
+        }
+        
+        public int getDictCount()
+        {
+            return dicts.Count;
+        }
+        
+        public int getDictIdx(Dictionary dict)
+        {
+            return dicts.IndexOf(dict);
+        }
+        
         public Dictionary CurDict() {
             return curDict;
         }
@@ -46,7 +67,7 @@ namespace Datastructure
         { load(); }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public static DictManger Manger()
+        public static DictManger Manager()
         {
             if (dictManger == null)
                 dictManger = new DictManger();
@@ -54,6 +75,33 @@ namespace Datastructure
             return dictManger;
         }
 
+        public  Tuple< List<Text>, List<int> >  find(string wrd, int type)
+        {
+            List<Text> ret_txts = new List<Text>();
+            List<int> dicts_idx = new List<int>();
+            Text txt;
+
+            for(int i = 0; i < dicts.Count; i++)
+            {
+                txt = dicts[i].find(wrd,type);
+                if(txt != null) { 
+                    ret_txts.Add(txt);
+                    dicts_idx.Add(i);
+                }
+            }
+
+            return Tuple.Create(ret_txts, dicts_idx);
+        }
+
+        public Tuple< List<Text>, List<int> >  find(string wrd)
+        {
+            return this.find(wrd, Dictionary.FLAG_E | Dictionary.FLAG_W | Dictionary.FLAG_N);
+        }
+
+        public Dictionary getDict(int idx)
+        {
+            return dicts[idx];
+        }
 
         /**--------------------------------------------------------
          *                                                        |
@@ -61,6 +109,17 @@ namespace Datastructure
          * db ,see delphi.txt                                     |
          *                                                        |
          ---------------------------------------------------------*/
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public bool addDict(Dictionary dict)
+        {
+            if (dict != null) { 
+                dicts.Add(dict);
+                return false;
+            }
+
+            return false;
+        }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public  bool save(string path)
@@ -559,11 +618,24 @@ namespace Datastructure
             return true;
         }
 
+
+        public string listDicts()
+        {
+            string ret = "";
+            for(int i = 0; i< dicts.Count; i++)
+            {
+                ret += (i+1)+") "+dicts[i].Name + " (" + dicts[i].Language + ")";
+            }
+
+            return ret;
+        }
+
         private  void init()
         {
             foreach (var dict in dicts)
                 dict.init();
         }
+
     }
 
     /**--------------------------------------------------------------------
@@ -725,57 +797,61 @@ namespace Datastructure
 
 
         // FLAG = {w,e,n}
-        public List<string> list(int FLAG = 0b0000111)
+        public string list(int FLAG = 0b0000111)
         {
-            List<string> ret = new List<string>();
-            if( (FLAG & Dictionary.FLAG_W) == Dictionary.FLAG_W  )
+            string ret = "";
+            int cntCounter = 0; 
+            if( (FLAG & Dictionary.FLAG_W) == Dictionary.FLAG_W )
             {
-                ret.AddRange(list_w());
+                ret+=(list_w(ref cntCounter));
+                ret += "--------------------------------\r\n";
             }
-
             if ((FLAG & Dictionary.FLAG_E) == Dictionary.FLAG_E)
             {
-                ret.AddRange(list_e());
+                ret+=(list_e(ref cntCounter));
+                ret += "--------------------------------\r\n";
             }
 
             if ((FLAG & Dictionary.FLAG_N) == Dictionary.FLAG_N )
             {
-                ret.AddRange(list_n());
+                ret+=(list_n(ref cntCounter));
             }
+
+            ret = ret.Remove(ret.Length-2);
             return ret;
         }
 
-        private List<string> list_w()
+        private string list_w( ref int cntCounter)
         {
-            List<string> list_w = new List<string>();
+            string list_w = "";
             int i = 0; 
-            for (i = 0; i < getWordsCount(); i++)
+            for (i = 0; i < getWordsCount(); i++, cntCounter++)
             {
-                list_w.Add(getWord(i).title+" (w)");
+                list_w +=  (cntCounter+1) +") "+getWord(i).title+" (w)"+"\r\n";
             }
 
             return list_w;
         }
 
-        private List<string> list_n()
+        private string list_n(ref int cntCounter)
         {
-            List<string> list_n = new List<string>();
+            string list_n = "";
             int i = 0;
-            for (i = 0; i < getNovelsCount(); i++)
+            for (i = 0; i < getNovelsCount(); i++, cntCounter++)
             {
-                list_n.Add(getNovel(i).title+ " (n)");
+                list_n+= (cntCounter +1 )+ ") " + getNovel(i).title+ " (n)" + "\r\n";
             }
 
             return list_n;
         }
 
-        private List<string> list_e()
+        private string list_e(ref int cntCounter)
         {
-            List<string> list_e = new List<string>();
+            string list_e = "";
             int i = 0;
-            for (i = 0; i < getExpressionsCount(); i++)
+            for (i = 0; i < getExpressionsCount(); i++, cntCounter++)
             {
-                list_e.Add(getExpression(i).title+" (e)");
+                list_e+= (cntCounter +1) + ") " + getExpression(i).title+" (e)" + "\r\n";
             }
 
             return list_e;
@@ -978,6 +1054,11 @@ namespace Datastructure
             return (Novel)find(title, FLAG_N);
         }
 
+        public List<Text> PBS(string prefix)
+        {
+            return idxBook.PBS(prefix);
+        }
+
         public void init()
         {
             sortWords();
@@ -1048,8 +1129,6 @@ namespace Datastructure
         }
        
     }
-
-
 
     public class Dict_ITA : Dictionary
     {
@@ -1583,13 +1662,20 @@ namespace Datastructure
         }
     }
 
+
+    /** ------------------------------------------
+   *                                            |      
+      Translation                               |      
+                                                |
+                                                |
+     -------------------------------------------*/
     public class Translation
     {
         private int dicID;
         private string lang;
         private Text translated;
 
-        public Translation(int dicID,string lang,Text translated)
+        public Translation(int dicID, string lang, Text translated)
         {
             if(dicID > 0)
              this.dicID = dicID;
@@ -1600,6 +1686,10 @@ namespace Datastructure
             if(translated != null)
              this.translated = translated;
         }
+
+
+        public Translation( string lang, Text translated): this(0,lang,translated)
+        {}
 
         public int getDicID()
         {
@@ -1622,7 +1712,12 @@ namespace Datastructure
         }
     }
 
-
+    /** ------------------------------------------
+  *                                            |      
+     IndexBoox                                 |    
+                                               |
+                                               |
+    -------------------------------------------*/
     public class IndexBook
     {
         private NodeOfIdx root;
@@ -1653,15 +1748,19 @@ namespace Datastructure
             add(title,index + 1, node.at(ch),wrd );
         }
 
+
+        // if the element is not found, the method will return false.
         public Text search(string word)
         {
-            return search(word, 0, root);
+            return search(word, 0, root).getText();
         }
 
-        private Text search(string word, int index, NodeOfIdx node)
+
+        //reach the node of the last character of the word in the Trie
+        private NodeOfIdx search(string word, int index, NodeOfIdx node)
         {
             if (index == word.Length)
-                return node.getText();
+                return node;
 
             char ch = word[index];
             if (!node.containsKey(ch))
@@ -1696,9 +1795,54 @@ namespace Datastructure
             }
             return false;
         }
+
+
+        //PrefixBasedSearch
+
+        // first thing first it uses the recursive search method for finding the prefix
+        // then the remaining words are found by a DFS
+        public List<Text> PBS(string prefix)
+        {
+            List<Text> ret = new List<Text>();
+            NodeOfIdx node =  search(prefix, 0, root);
+            DFS(node, ret);
+            return ret;
+        }
+        
+
+        // DEPTH FIRST SEARCH
+
+        private void DFS(NodeOfIdx start , List<Text> ret)
+        {
+            if (start == null)
+                return;
+
+            if (start.getText() != null)
+                ret.Add(start.getText());
+
+            
+            Dictionary<char, NodeOfIdx> childs = start.getChilds();
+            if (childs.Count == 0)
+                return;
+
+            foreach (NodeOfIdx child in childs.Values)
+            {
+                DFS(child,ret);
+            }
+        }
+        
+
+
     }
 
     // il private della classe è sostituito con internal
+
+    /** ----------------------------------------
+    *                                          |      
+       NodeOfIdx                               |      
+                                               |
+                                               |
+    -------------------------------------------*/
     internal class NodeOfIdx
     {
         private Dictionary<char, NodeOfIdx> alphabet;
@@ -1716,6 +1860,11 @@ namespace Datastructure
                 alphabet.Add(key,new NodeOfIdx() );
                 return false;
             } return true;
+        }
+
+        public Dictionary<char,NodeOfIdx> getChilds()
+        {
+            return alphabet;
         }
 
         public NodeOfIdx at(char key)
