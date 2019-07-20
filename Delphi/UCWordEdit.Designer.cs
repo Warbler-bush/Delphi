@@ -67,6 +67,8 @@
             this.lblType = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.pnlWord = new System.Windows.Forms.TableLayoutPanel();
+            this.cmbLanguage = new System.Windows.Forms.ComboBox();
+            this.lblLanguage = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.panel1.SuspendLayout();
@@ -83,6 +85,8 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.cmbLanguage);
+            this.panel3.Controls.Add(this.lblLanguage);
             this.panel3.Controls.Add(this.btnRemove);
             this.panel3.Controls.Add(this.lblSeperator);
             this.panel3.Controls.Add(this.lblNumDef);
@@ -102,12 +106,12 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(3, 717);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(379, 210);
+            this.panel3.Size = new System.Drawing.Size(379, 233);
             this.panel3.TabIndex = 6;
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(92, 117);
+            this.btnRemove.Location = new System.Drawing.Point(97, 147);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(75, 23);
             this.btnRemove.TabIndex = 45;
@@ -119,7 +123,7 @@
             // 
             this.lblSeperator.AutoSize = true;
             this.lblSeperator.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSeperator.Location = new System.Drawing.Point(297, 122);
+            this.lblSeperator.Location = new System.Drawing.Point(302, 152);
             this.lblSeperator.Name = "lblSeperator";
             this.lblSeperator.Size = new System.Drawing.Size(12, 18);
             this.lblSeperator.TabIndex = 44;
@@ -129,7 +133,7 @@
             // 
             this.lblNumDef.AutoSize = true;
             this.lblNumDef.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumDef.Location = new System.Drawing.Point(315, 122);
+            this.lblNumDef.Location = new System.Drawing.Point(320, 152);
             this.lblNumDef.Name = "lblNumDef";
             this.lblNumDef.Size = new System.Drawing.Size(16, 18);
             this.lblNumDef.TabIndex = 43;
@@ -139,7 +143,7 @@
             // 
             this.lblCurDef.AutoSize = true;
             this.lblCurDef.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurDef.Location = new System.Drawing.Point(275, 122);
+            this.lblCurDef.Location = new System.Drawing.Point(280, 152);
             this.lblCurDef.Name = "lblCurDef";
             this.lblCurDef.Size = new System.Drawing.Size(16, 18);
             this.lblCurDef.TabIndex = 42;
@@ -150,7 +154,7 @@
             this.btnForward.FlatAppearance.BorderSize = 0;
             this.btnForward.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnForward.Image = ((System.Drawing.Image)(resources.GetObject("btnForward.Image")));
-            this.btnForward.Location = new System.Drawing.Point(241, 117);
+            this.btnForward.Location = new System.Drawing.Point(246, 147);
             this.btnForward.Name = "btnForward";
             this.btnForward.Size = new System.Drawing.Size(28, 31);
             this.btnForward.TabIndex = 41;
@@ -163,7 +167,7 @@
             this.btnBackward.FlatAppearance.BorderSize = 0;
             this.btnBackward.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBackward.Image = ((System.Drawing.Image)(resources.GetObject("btnBackward.Image")));
-            this.btnBackward.Location = new System.Drawing.Point(207, 117);
+            this.btnBackward.Location = new System.Drawing.Point(212, 147);
             this.btnBackward.Name = "btnBackward";
             this.btnBackward.Size = new System.Drawing.Size(28, 31);
             this.btnBackward.TabIndex = 40;
@@ -172,7 +176,7 @@
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(155, 174);
+            this.btnOk.Location = new System.Drawing.Point(160, 204);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(206, 23);
             this.btnOk.TabIndex = 39;
@@ -183,7 +187,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(0, 154);
+            this.pictureBox5.Location = new System.Drawing.Point(5, 184);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(352, 14);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -212,7 +216,7 @@
             // btnCambDef
             // 
             this.btnCambDef.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCambDef.Location = new System.Drawing.Point(5, 117);
+            this.btnCambDef.Location = new System.Drawing.Point(10, 147);
             this.btnCambDef.Name = "btnCambDef";
             this.btnCambDef.Size = new System.Drawing.Size(80, 23);
             this.btnCambDef.TabIndex = 34;
@@ -223,7 +227,7 @@
             // lblHint
             // 
             this.lblHint.AutoSize = true;
-            this.lblHint.Location = new System.Drawing.Point(194, 96);
+            this.lblHint.Location = new System.Drawing.Point(211, 111);
             this.lblHint.Name = "lblHint";
             this.lblHint.Size = new System.Drawing.Size(158, 13);
             this.lblHint.TabIndex = 35;
@@ -233,18 +237,18 @@
             // 
             this.txtContra.BackColor = System.Drawing.Color.White;
             this.txtContra.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContra.Location = new System.Drawing.Point(76, 39);
+            this.txtContra.Location = new System.Drawing.Point(89, 39);
             this.txtContra.Name = "txtContra";
-            this.txtContra.Size = new System.Drawing.Size(285, 23);
+            this.txtContra.Size = new System.Drawing.Size(272, 23);
             this.txtContra.TabIndex = 31;
             // 
             // txtSino
             // 
             this.txtSino.BackColor = System.Drawing.Color.White;
             this.txtSino.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSino.Location = new System.Drawing.Point(76, 10);
+            this.txtSino.Location = new System.Drawing.Point(89, 10);
             this.txtSino.Name = "txtSino";
-            this.txtSino.Size = new System.Drawing.Size(285, 23);
+            this.txtSino.Size = new System.Drawing.Size(272, 23);
             this.txtSino.TabIndex = 30;
             // 
             // lblCon
@@ -478,7 +482,6 @@
             // 
             // pnlWord
             // 
-            this.pnlWord.AutoScroll = true;
             this.pnlWord.ColumnCount = 1;
             this.pnlWord.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.pnlWord.Controls.Add(this.pnlTitle, 0, 0);
@@ -497,8 +500,26 @@
             this.pnlWord.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlWord.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlWord.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlWord.Size = new System.Drawing.Size(385, 530);
+            this.pnlWord.Size = new System.Drawing.Size(385, 953);
             this.pnlWord.TabIndex = 1;
+            // 
+            // cmbLanguage
+            // 
+            this.cmbLanguage.FormattingEnabled = true;
+            this.cmbLanguage.Location = new System.Drawing.Point(93, 108);
+            this.cmbLanguage.Name = "cmbLanguage";
+            this.cmbLanguage.Size = new System.Drawing.Size(112, 21);
+            this.cmbLanguage.TabIndex = 47;
+            // 
+            // lblLanguage
+            // 
+            this.lblLanguage.AutoSize = true;
+            this.lblLanguage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLanguage.Location = new System.Drawing.Point(3, 108);
+            this.lblLanguage.Name = "lblLanguage";
+            this.lblLanguage.Size = new System.Drawing.Size(61, 20);
+            this.lblLanguage.TabIndex = 46;
+            this.lblLanguage.Text = "Lingua:";
             // 
             // UCWordEdit
             // 
@@ -506,7 +527,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnlWord);
             this.Name = "UCWordEdit";
-            this.Size = new System.Drawing.Size(385, 530);
+            this.Size = new System.Drawing.Size(385, 953);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
@@ -569,5 +590,7 @@
         private System.Windows.Forms.Button btnForward;
         private System.Windows.Forms.Button btnBackward;
         private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.ComboBox cmbLanguage;
+        private System.Windows.Forms.Label lblLanguage;
     }
 }

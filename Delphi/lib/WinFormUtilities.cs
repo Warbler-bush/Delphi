@@ -11,7 +11,7 @@ namespace WinFormUtilities
                 if (calculated > ctr.Height)
                     ctr.Height = calculated;
 
-                return Tuple.Create(ctr.Location.X - 3, ctr.Height + ctr.Location.Y);
+                return Tuple.Create(ctr.Location.X - 3, ctr.Height + ctr.Location.Y+3);
             }
 
 

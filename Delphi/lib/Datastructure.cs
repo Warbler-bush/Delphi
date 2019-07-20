@@ -23,7 +23,7 @@ namespace Datastructure
         private List<Dictionary> dicts = null;
         private Dictionary curDict = null;
 
-        private static String DEFAULT_PATH;
+        private static string DEFAULT_PATH;
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public bool setCurDict(string name)
@@ -98,6 +98,17 @@ namespace Datastructure
             return this.find(wrd, Dictionary.FLAG_E | Dictionary.FLAG_W | Dictionary.FLAG_N);
         }
 
+        
+        private List<Dictionary> getDicts(string language)
+        {
+            List<Dictionary> ret = new List<Dictionary>();
+            for (int i = 0; i < dicts.Count; i++)
+                if (dicts[i].Language == language)
+                    ret.Add(dicts[i]);
+
+            return ret;
+        }
+
         public Dictionary getDict(int idx)
         {
             return dicts[idx];
@@ -124,8 +135,8 @@ namespace Datastructure
         [MethodImpl(MethodImplOptions.Synchronized)]
         public  bool save(string path)
         {
-            try
-            {
+            //try
+            //{
                 StreamWriter sw = new StreamWriter(path, false, Encoding.Unicode);
                 // number of dictionaries
                 sw.WriteLine(dicts.Count);
@@ -266,38 +277,48 @@ namespace Datastructure
                 {
                     Dictionary dic = dicts[cntDict];
 
+
+                    //-----------------------------
+                    // TRANSLATION FOR WORDS
+                    //-----------------------------
                     for (int cntWord = 0; cntWord < dic.getWordsCount(); cntWord++)
                     {
                         Word wrd = dic.getWord(cntWord);
-                        int idx = dic.getIdArrayOfText(wrd);
+                        int idx_wrd = dic.getIdArrayOfText(wrd);
 
-                        for (int cntDef = 0; cntDef < wrd.getDefinitionCount(); cntDef++)
+                        string ret = "";
+                        foreach (Translation trans in wrd.getTranslations())
                         {
-                            Definition def = wrd.getDefinition(cntDef);
-                            string ret = "";
-                            foreach (Translation trans in def.getTranslations())
-                            {
-                                int dic_idx = trans.getDicID();
-                                ret += dic_idx + " - " + dicts[dic_idx].getIdArrayOfText(trans.getTranslated()) + ";";
-                            }
-                            if (!ret.Equals("")) ret = ";" + ret.Remove(ret.Length - 1);
-                            sw.WriteLine(idx + ";" + cntDef + ret);
+                            int dic_idx = trans.getDicID();
+                            ret += dic_idx + "-" + dicts[dic_idx].getIdArrayOfText(trans.getTranslated()) +"-"+ wrd.getTranDefIndex(trans)+";";
                         }
-                    }
+                        if (!ret.Equals("")) ret = ";" + ret.Remove(ret.Length - 1);
+                        sw.WriteLine(idx_wrd + ";" + ret);
+                        
+
+
+                }
+                    //-----------------------------
+                    // TRANSLATION FOR EXPRESSIONS
+                    //-----------------------------
                     for (int cntExp = 0; cntExp < dic.getExpressionsCount(); cntExp++)
                     {
                         Expression expr = dic.getExpression(cntExp);
                         int expr_idx = dic.getIdArrayOfText(expr);
                         string ret = "";
+
+                        
                         foreach (Translation trans in expr.getTranslations())
                         {
                             int dic_idx = trans.getDicID();
-                            ret += dic_idx + " - " + dicts[dic_idx].getIdArrayOfText(trans.getTranslated()) + ";";
+                            ret += dic_idx + "-" + dicts[dic_idx].getIdArrayOfText(trans.getTranslated()) + ";";
                         }
                         if (!ret.Equals("")) ret = ret.Remove(ret.Length - 1);
                         sw.WriteLine(expr_idx + ";" + ret);
                     }
-
+                    //-----------------------------
+                    // TRANSLATION FOR NOVELS
+                    //-----------------------------
                     for (int cntNvl = 0; cntNvl < dic.getNovelsCount(); cntNvl++)
                     {
                         Novel nvl = dic.getNovel(cntNvl);
@@ -306,7 +327,7 @@ namespace Datastructure
                         foreach (Translation trans in nvl.getTranslations())
                         {
                             int dic_idx = trans.getDicID();
-                            ret += dic_idx + " - " + dicts[dic_idx].getIdArrayOfText(trans.getTranslated()) + ";";
+                            ret += dic_idx + "-" + dicts[dic_idx].getIdArrayOfText(trans.getTranslated()) + ";";
                         }
                         if (!ret.Equals("")) ret = ret.Remove(ret.Length - 1);
                         sw.WriteLine(nvl_idx + ";" + ret);
@@ -315,11 +336,11 @@ namespace Datastructure
 
                 sw.Close();
                 return false;
-            }
-            catch (Exception e)
-            { Console.WriteLine("Exception: " + e.Message); }
+           // }
+           // catch (Exception e)
+          //  { Console.WriteLine("Exception: " + e.Message); }
 
-            return true;
+          //  return true;
         }
 
         //it sets the curDict to the first dictionary
@@ -536,26 +557,26 @@ namespace Datastructure
                     Dictionary dict = dicts[cntDict];
 
                     /* translation for words  */
-                    for (int cntWord = 0; cntWord < dict.getDefinitionsOfWordsCount(); cntWord++)
+                    for (int cntWord = 0; cntWord < dict.getWordsCount(); cntWord++)
                     {
                         line = sr.ReadLine();
                         fields = line.Split(';');
 
                         int idx_word = Int32.Parse(fields[0]);
-                        int idx_def = Int32.Parse(fields[1]);
-                        Definition def = dict.getWord(idx_word).getDefinition(idx_def);
+                        Word wrd = dict.getWord(cntWord);
 
                         for (int i = 2; i < fields.Length; i++)
                         {
                             records = fields[i].Split('-');
                             int idx_dict = Int32.Parse(records[0]);
-                            int idx_text = Int32.Parse(records[1]);
+                            int idx_translation = Int32.Parse(records[1]);
+                            int idx_def = Int32.Parse(records[2]);
 
                             string lang = dicts[idx_dict].Language;
 
-                            Text txtText = dicts[idx_dict].getText(idx_text);
+                            Text txtText = dicts[idx_dict].getText(idx_translation);
                             Translation trsTrans = new Translation(idx_dict, lang, txtText);
-                            def.addTranslation(trsTrans);
+                            wrd.addTranslation(trsTrans, idx_def);
                         }
 
                     }
@@ -612,9 +633,10 @@ namespace Datastructure
                 init();
                 return false;
             }
-
             catch (Exception e)
-            { Console.WriteLine("Exception: " + e.Message); }
+            {
+                Console.WriteLine("Exception from read(): " + e.Message);
+            }
             return true;
         }
 
@@ -624,9 +646,10 @@ namespace Datastructure
             string ret = "";
             for(int i = 0; i< dicts.Count; i++)
             {
-                ret += (i+1)+") "+dicts[i].Name + " (" + dicts[i].Language + ")";
+                ret += (i+1)+") "+dicts[i].Name + " (" + dicts[i].Language + ")"+"\r\n";
             }
 
+            ret = ret.Remove(ret.Length-2);
             return ret;
         }
 
@@ -656,6 +679,11 @@ namespace Datastructure
         private List<Expression> expressions;
         private List<Novel> novels;
         private IndexBook idxBook;
+        
+        //
+        //es -> spanish
+        //
+        public static List<string> languages = new List<string> { "it", "en", "de", "fr", "es" };
 
         private List<int> dateIdxArray;
         private int maxIndexedIndex;
@@ -945,7 +973,7 @@ namespace Datastructure
         {
             int ret = 0;
             foreach (Word wrd in words) {
-                if (!wrd.hasADefinitionWithTranslation())
+                if (wrd.getTranslationCount() == 0)
                     ret++;
             }
             return ret;
@@ -1143,13 +1171,14 @@ namespace Datastructure
                                                                   |
      --------------------------------------------------------------*/
 
-    public class Text
+    public abstract class Text
     {
         protected string _title ;
         protected string _origin;
         protected string _note;
         protected DateTime creation_date;
         protected DateTime lastVisit_date;
+        protected List<Translation> translations;
 
         public string getCreationDate()
         {
@@ -1181,6 +1210,7 @@ namespace Datastructure
 
         public Text()
         {
+            translations = new List<Translation>();
             creation_date = DateTime.UtcNow;
         }
 
@@ -1189,6 +1219,7 @@ namespace Datastructure
             _title = title ?? throw new ArgumentNullException(nameof(title));
             _origin = origin ?? throw new ArgumentNullException(nameof(origin));
             _note = note ?? throw new ArgumentNullException(nameof(note));
+            translations = new List<Translation>();
             this.creation_date = creation_date;
             this.lastVisit_date = lastVisit_date;
         }
@@ -1199,6 +1230,7 @@ namespace Datastructure
             _origin = origin ?? throw new ArgumentNullException(nameof(origin));
             _note = note ?? throw new ArgumentNullException(nameof(note));
             this.creation_date = DateTime.UtcNow;
+            translations = new List<Translation>();
         }
 
         public void updateLastVisit()
@@ -1206,17 +1238,51 @@ namespace Datastructure
             this.lastVisit_date = DateTime.UtcNow;
         }
 
+        public int getTranslationCount()
+        {
+            return translations.Count;
+        }
+
+        public virtual bool addTranslation(Translation trans)
+        {
+            if(trans != null) { 
+                translations.Add(trans);
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool removeTranslation(Translation trans)
+        {
+            if(trans != null)
+            {
+                translations.Remove(trans);
+                return false;
+            }
+
+            return true;
+        }
+
         public virtual string toString()
         {
+            string trans = "";
+            foreach(Translation s in translations)
+                trans += s.getTranslated().title  + " ";
+
             string tmp_origin = origin.Replace("\n","\\n");
             string tmp_note = note.Replace("\n","\\n");
             string ret = "Text{  title:"+_title+";"+  "creation date:"+creation_date.ToString() + ";  last visit date:"+ lastVisit_date.ToString()+ ";}\n"
                          +"origin:["+tmp_origin+"];\n"
-                         +"note:["+tmp_note+"];\n";
+                         +"note:["+tmp_note+"];\n"
+                         + "trans:["+trans+"];\n";
             return ret;
         }
 
-
+        public List<Translation> getTranslations()
+        {
+            return translations;
+        }
     }
 
 
@@ -1229,13 +1295,20 @@ namespace Datastructure
 
     public class Word : Text
     {
+
+        // index translation-def
+        private List<int> trans_indexes;
         private List<Definition> definitions;
         private List<Form> forms;
         private string _type;
 
+
+
+
         public Word() : base()
         {
             definitions = new List<Definition>();
+            trans_indexes = new List<int>();
             forms = new List<Form>();
         }
 
@@ -1253,6 +1326,18 @@ namespace Datastructure
             _type = type;
             definitions = new List<Definition>();
             forms = new List<Form>();
+        }
+
+        public int getTranDefIndex(Translation trans)
+        {
+            return trans_indexes[translations.IndexOf(trans)];
+        }
+
+        public int indexOfDef(Definition def)
+        {
+            if (def != null)
+                return definitions.IndexOf(def);
+            else return -1;
         }
 
         public string getType()
@@ -1326,6 +1411,7 @@ namespace Datastructure
             return definitions;
         }
 
+        /*
         public int getDefsWithTranslation()
         {
             int ret = 0;
@@ -1347,6 +1433,44 @@ namespace Datastructure
             }
 
             return tro;
+        }*/
+
+        public bool addTranslation(Translation trans , int idx_def)
+        {
+            bool ret = base.addTranslation(trans);
+            if (ret == false)
+            {
+                trans_indexes.Add(idx_def);
+            }
+            return ret;
+        }
+
+        public bool addTranslation(Translation trans, Definition def)
+        {
+            return addTranslation(trans, indexOfDef(def) );
+        }
+
+        //default it adds to 0
+        public override bool addTranslation(Translation trans)
+        {
+            return addTranslation(trans,0);
+        }
+
+        public List<Translation> getTranslations(Definition def)
+        {
+            return getTranslations( definitions.IndexOf(def) );
+        }
+
+        public List<Translation> getTranslations(int def_idx)
+        {
+            List<Translation> ret = new List<Translation>();
+            for(int i = 0; i< translations.Count; i++)
+            {
+                if (trans_indexes[i] == def_idx)
+                    ret.Add(translations[i]);
+            }
+
+            return ret; 
         }
 
         public string normalized()
@@ -1387,7 +1511,6 @@ namespace Datastructure
         private string _definition;
         private List<Text> synonyms;
         private List<Text> contraries;
-        private List< Translation > translations;
 
         
         public string definition
@@ -1399,7 +1522,6 @@ namespace Datastructure
         {
             synonyms = new List<Text>();
             contraries = new List<Text>();
-            translations = new List<Translation >();
             _definition = definition ?? throw new ArgumentNullException(nameof(definition));
         }
 
@@ -1410,11 +1532,6 @@ namespace Datastructure
         public void addContrary(Text t)
         {
             if (t != null) contraries.Add(t);
-        }
-        public void addTranslation(Translation t)
-        {
-            if (t != null )
-                translations.Add(t);
         }
 
         public void clearSynonyms()
@@ -1437,10 +1554,6 @@ namespace Datastructure
             return contraries;
         }
 
-        public List<Translation> getTranslations()
-        {
-            return translations;
-        }
 
         public string toString()
         {
@@ -1454,8 +1567,6 @@ namespace Datastructure
             foreach(Text s in contraries)
                 contrs += s.title + " ";
 
-            foreach(var s in translations)
-                trans += s.toString()+ " ";
 
             string tmp_definition = _definition.Replace("\n","\\n");
             string ret= "Definition{  "+
@@ -1466,11 +1577,6 @@ namespace Datastructure
                         "definition:[" + tmp_definition + "];  ";
 
             return ret;
-        }
-
-        public int getTranslationCount()
-        {
-            return translations.Count();
         }
 
     }
@@ -1516,7 +1622,6 @@ namespace Datastructure
     {
         private string _explanation;
         private string _text;
-        private List<Translation> translations;
 
         public string explanation
         {
@@ -1538,23 +1643,6 @@ namespace Datastructure
         public Expression(string title, string origin, string note, string text, string explanation)
             : base(title, origin, note)
         { _explanation = explanation; translations = new List<Translation>();  _text = text; }
-
-
-        public void addTranslation(Translation translation)
-        {
-            if(translation != null)
-                translations.Add(translation);
-        }
-
-        public int getTranslationCount()
-        {
-            return translations.Count();
-        }
-
-        public List<Translation> getTranslations()
-        {
-            return translations;
-        }
 
         public override string toString()
         {
@@ -1581,7 +1669,6 @@ namespace Datastructure
     {
         private string _text;
         private string _author;
-        private List< Translation > translations;
 
         public string text
         {
@@ -1595,10 +1682,7 @@ namespace Datastructure
             set => _author = value;
         }
 
-        public int getTranslationCount()
-        {
-            return translations.Count();
-        }
+        
 
         public Novel(): base() { }
         
@@ -1622,11 +1706,6 @@ namespace Datastructure
             translations = new List<Translation>();
         }
 
-        public List<Translation> getTranslations()
-        {
-            return translations;
-        }
-
         public void setText(string text)
         {
             if(text != null)
@@ -1639,11 +1718,7 @@ namespace Datastructure
                 _author = author;
         }
 
-        public void addTranslation(Translation translation)
-        {   
-            if(translation != null)
-                translations.Add(translation);
-        }
+       
 
        public override string toString()
         {
@@ -1677,7 +1752,7 @@ namespace Datastructure
 
         public Translation(int dicID, string lang, Text translated)
         {
-            if(dicID > 0)
+            if(dicID >= 0)
              this.dicID = dicID;
 
             if (lang != null)
@@ -1752,7 +1827,12 @@ namespace Datastructure
         // if the element is not found, the method will return false.
         public Text search(string word)
         {
-            return search(word, 0, root).getText();
+
+            NodeOfIdx found = search(word, 0, root);
+            if (found == null)
+                return null;
+
+            return found.getText();
         }
 
 

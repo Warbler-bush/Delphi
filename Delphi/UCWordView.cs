@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Datastructure;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using WinFormUtilities;
@@ -52,10 +53,26 @@ namespace Delphi
 
                 i++;
             }
-            basicUtilities.resizeTextBox(txtDefinitionsText);
-            pnlView.Height = txtDefinitionsText.Location.Y + 10;
+
+            
+            location = basicUtilities.resizeTextBox(txtDefinitionsText);
+            lblTranslation.Location = new Point(location.Item1, location.Item2+5);
+
+            txtTranslation.Text = "";
+            foreach (Translation trans in wrd.getTranslations())
+                txtTranslation.Text += trans.getTranslated().title + ",";
+
+            if(txtTranslation.Text != "")
+                txtTranslation.Text = txtTranslation.Text.Remove(txtTranslation.Text.Length - 1);
+
+            location = basicUtilities.resizeTextBox(txtTranslation);
+            this.Height = location.Item2 + 5;
+            this.Refresh();
         }
 
+        private void lblTitle_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

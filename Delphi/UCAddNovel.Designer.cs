@@ -39,12 +39,17 @@
             this.lblNovel = new System.Windows.Forms.Label();
             this.txtAuthor = new System.Windows.Forms.TextBox();
             this.lblAuthor = new System.Windows.Forms.Label();
+            this.cmbLanguage = new System.Windows.Forms.ComboBox();
+            this.lblLanguage = new System.Windows.Forms.Label();
+            this.txtTradu = new System.Windows.Forms.TextBox();
+            this.lblTran = new System.Windows.Forms.Label();
+            this.lblHint = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnOK
             // 
             this.btnOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOK.Location = new System.Drawing.Point(248, 485);
+            this.btnOK.Location = new System.Drawing.Point(245, 584);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(118, 26);
             this.btnOK.TabIndex = 46;
@@ -56,7 +61,7 @@
             // 
             this.txtText.BackColor = System.Drawing.Color.White;
             this.txtText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtText.Location = new System.Drawing.Point(9, 289);
+            this.txtText.Location = new System.Drawing.Point(7, 378);
             this.txtText.Multiline = true;
             this.txtText.Name = "txtText";
             this.txtText.Size = new System.Drawing.Size(357, 190);
@@ -66,7 +71,7 @@
             // 
             this.lblText.AutoSize = true;
             this.lblText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblText.Location = new System.Drawing.Point(3, 266);
+            this.lblText.Location = new System.Drawing.Point(1, 355);
             this.lblText.Name = "lblText";
             this.lblText.Size = new System.Drawing.Size(53, 20);
             this.lblText.TabIndex = 45;
@@ -150,10 +155,61 @@
             this.lblAuthor.TabIndex = 48;
             this.lblAuthor.Text = "Autore:";
             // 
+            // cmbLanguage
+            // 
+            this.cmbLanguage.FormattingEnabled = true;
+            this.cmbLanguage.Location = new System.Drawing.Point(100, 301);
+            this.cmbLanguage.Name = "cmbLanguage";
+            this.cmbLanguage.Size = new System.Drawing.Size(139, 21);
+            this.cmbLanguage.TabIndex = 53;
+            // 
+            // lblLanguage
+            // 
+            this.lblLanguage.AutoSize = true;
+            this.lblLanguage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLanguage.Location = new System.Drawing.Point(9, 299);
+            this.lblLanguage.Name = "lblLanguage";
+            this.lblLanguage.Size = new System.Drawing.Size(61, 20);
+            this.lblLanguage.TabIndex = 52;
+            this.lblLanguage.Text = "Lingua:";
+            // 
+            // txtTradu
+            // 
+            this.txtTradu.BackColor = System.Drawing.Color.White;
+            this.txtTradu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTradu.Location = new System.Drawing.Point(100, 267);
+            this.txtTradu.Name = "txtTradu";
+            this.txtTradu.Size = new System.Drawing.Size(263, 23);
+            this.txtTradu.TabIndex = 49;
+            // 
+            // lblTran
+            // 
+            this.lblTran.AutoSize = true;
+            this.lblTran.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTran.Location = new System.Drawing.Point(8, 270);
+            this.lblTran.Name = "lblTran";
+            this.lblTran.Size = new System.Drawing.Size(86, 20);
+            this.lblTran.TabIndex = 51;
+            this.lblTran.Text = "Traduzioni:";
+            // 
+            // lblHint
+            // 
+            this.lblHint.AutoSize = true;
+            this.lblHint.Location = new System.Drawing.Point(205, 336);
+            this.lblHint.Name = "lblHint";
+            this.lblHint.Size = new System.Drawing.Size(158, 13);
+            this.lblHint.TabIndex = 50;
+            this.lblHint.Text = "* Separare con il punto e virgola";
+            // 
             // UCAddNovel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cmbLanguage);
+            this.Controls.Add(this.lblLanguage);
+            this.Controls.Add(this.txtTradu);
+            this.Controls.Add(this.lblTran);
+            this.Controls.Add(this.lblHint);
             this.Controls.Add(this.txtAuthor);
             this.Controls.Add(this.lblAuthor);
             this.Controls.Add(this.btnOK);
@@ -166,7 +222,7 @@
             this.Controls.Add(this.txtNovel);
             this.Controls.Add(this.lblNovel);
             this.Name = "UCAddNovel";
-            this.Size = new System.Drawing.Size(370, 522);
+            this.Size = new System.Drawing.Size(369, 623);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -185,5 +241,10 @@
         private System.Windows.Forms.Label lblNovel;
         private System.Windows.Forms.TextBox txtAuthor;
         private System.Windows.Forms.Label lblAuthor;
+        private System.Windows.Forms.ComboBox cmbLanguage;
+        private System.Windows.Forms.Label lblLanguage;
+        private System.Windows.Forms.TextBox txtTradu;
+        private System.Windows.Forms.Label lblTran;
+        private System.Windows.Forms.Label lblHint;
     }
 }

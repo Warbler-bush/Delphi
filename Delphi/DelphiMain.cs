@@ -47,15 +47,25 @@ namespace Delphi
         private UCAddDictionary UCAddDictionary;
 
         //View W/E/N
-        private Panel pnlView;
+        private Panel pnlWordView;
         private UCWordView UCWordView;
+
+
+        private Panel pnlExpView;
         private UCExpressionView UCExpView;
+
+        private Panel pnlNovelView;
         private UCNovelView UCNovelView;
 
+        
         //Edit W/E/N
-        private Panel pnlEdit;
+        private Panel pnlWordEdit;
         private UCWordEdit UCWordEdit;
+
+        private Panel pnlExpEdit;
         private UCExpressionEdit UCExpEdit;
+
+        private Panel pnlNovelEdit;
         private UCNovelEdit UCNovelEdit;
 
         //Search
@@ -74,14 +84,19 @@ namespace Delphi
         public const int PNL_ADD = 2;
         public const int PNL_TABLE = 3;
         public const int PNL_SEARCH = 4;
-        public const int PNL_VIEW = 5;
-        public const int PNL_EDIT = 6;
-        public const int PNL_ADD_WORD = 7;
-        public const int PNL_ADD_EXPRESSION = 8;
-        public const int PNL_ADD_NOVEL = 9;
-        public const int PNL_ADD_DICT = 10;
-        
-       
+        public const int PNL_VIEW_WORD = 5;
+        public const int PNL_VIEW_NOVEL = 6;
+        public const int PNL_VIEW_EXPRESSION = 7; 
+
+        public const int PNL_EDIT_WORD = 8;
+        public const int PNL_EDIT_EXPRESSION = 9;
+        public const int PNL_EDIT_NOVEL = 10;
+
+        public const int PNL_ADD_WORD = 11;
+        public const int PNL_ADD_EXPRESSION = 12;
+        public const int PNL_ADD_NOVEL = 13;
+        public const int PNL_ADD_DICT = 14;
+
 
         private const int N_WORD_TO_RIMIND = 20;
 
@@ -103,19 +118,18 @@ namespace Delphi
             Thread thr = new Thread(runShell);
             thr.Start();
             InitializeComponent();
+            dictManger = DictManger.Manager();
+            initControls();
         }
         /*---------------------------------------------------------*/
 
-        private void DelphiMain_Load(object sender, EventArgs e)
-        {   dictManger = DictManger.Manager(); 
-            initControls();  
-        }
+        
 
         //init panel
         private void initPnl(Panel pnl)
         {
             pnl.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-            pnl.AutoSize = true;
+            pnl.AutoScroll = true;
             pnl.BringToFront();
             pnl.Dock = DockStyle.Fill;
         }
@@ -150,6 +164,7 @@ namespace Delphi
 
         private void initControls()
         {
+            pnlMain.GetType();
             // init the name of current dictionary
             lblDictName.Text = dictManger.CurDict().Name + " ("+dictManger.CurDict().Language+") ";
 
@@ -212,38 +227,51 @@ namespace Delphi
             //---------------------------------
             //creating panel View
             //---------------------------------
-            pnlView = new TableLayoutPanel();
+            pnlWordView = new TableLayoutPanel();
+            pnlExpView = new TableLayoutPanel();
+            pnlNovelView = new TableLayoutPanel();
+
             UCWordView = new UCWordView();
             UCExpView = new UCExpressionView();
             UCNovelView = new UCNovelView();
 
 
 
-            initPnl(pnlView);
-            visualized_controls.Add(pnlView);
-            pnlMain.Controls.Add(pnlView);
+            initPnl(pnlWordView);
+            visualized_controls.Add(pnlWordView);
+            pnlMain.Controls.Add(pnlWordView);
+
+            initPnl(pnlExpView);
+            visualized_controls.Add(pnlExpView);
+            pnlMain.Controls.Add(pnlExpView);
 
 
-            UCWordView.Dock = DockStyle.Fill;
+            initPnl(pnlNovelView);
+            visualized_controls.Add(pnlNovelView);
+            pnlMain.Controls.Add(pnlNovelView);
+
+
+           
             UCWordView.Anchor = AnchorStyles.Top | AnchorStyles.Left;
 
-
-            UCExpView.Dock = DockStyle.Fill;
+            
             UCExpView.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-
-            UCNovelView.Dock = DockStyle.Fill;
+            
             UCNovelView.Anchor = AnchorStyles.Top | AnchorStyles.Left;
 
 
-            pnlView.Controls.Add(UCWordView);
-            pnlView.Controls.Add(UCExpView);
-            pnlView.Controls.Add(UCNovelView);
+            pnlWordView.Controls.Add(UCWordView);
+            pnlExpView.Controls.Add(UCExpView);
+            pnlNovelView.Controls.Add(UCNovelView);
 
 
             //---------------------------------
             //creating panel Edit
             //---------------------------------
-            pnlEdit = new TableLayoutPanel();
+            pnlWordEdit = new TableLayoutPanel();
+            pnlExpEdit = new TableLayoutPanel();
+            pnlNovelEdit = new TableLayoutPanel();
+
             UCWordEdit = new UCWordEdit();
             UCExpEdit = new UCExpressionEdit();
             UCNovelEdit = new UCNovelEdit();
@@ -251,24 +279,29 @@ namespace Delphi
 
             
 
-            initPnl(pnlEdit);
-            visualized_controls.Add(pnlEdit);
-            pnlMain.Controls.Add(pnlEdit);
+            initPnl(pnlWordEdit);
+            visualized_controls.Add(pnlWordEdit);
+            pnlMain.Controls.Add(pnlWordEdit);
 
+            initPnl(pnlExpEdit);
+            visualized_controls.Add(pnlExpEdit);
+            pnlMain.Controls.Add(pnlExpEdit);
 
-            UCWordEdit.Dock = DockStyle.Fill;
+            initPnl(pnlNovelEdit);
+            visualized_controls.Add(pnlNovelEdit);
+            pnlMain.Controls.Add(pnlNovelEdit);
+
+            
             UCWordEdit.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-
-            UCExpEdit.Dock = DockStyle.Fill;
+            
             UCExpEdit.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-
-            UCNovelEdit.Dock = DockStyle.Fill;
+            
             UCNovelEdit.Anchor = AnchorStyles.Top | AnchorStyles.Left;
 
 
-            pnlEdit.Controls.Add(UCWordEdit);
-            pnlEdit.Controls.Add(UCExpEdit);
-            pnlEdit.Controls.Add(UCNovelEdit);
+            pnlWordEdit.Controls.Add(UCWordEdit);
+            pnlExpEdit.Controls.Add(UCExpEdit);
+            pnlNovelEdit.Controls.Add(UCNovelEdit);
 
 
             //---------------------------------
@@ -281,13 +314,10 @@ namespace Delphi
             pnlAddWord.Controls.Add(UCAddWord);
             UCAddWord.Anchor = AnchorStyles.Top | AnchorStyles.Left;
 
-
+            initPnl(pnlAddWord);
             visualized_controls.Add(pnlAddWord);
             this.Controls.Add(pnlAddWord);
 
-            //init pnlAdd
-            pnlAddWord.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-            pnlAddWord.AutoSize = true;
             pnlMain.Controls.Add(pnlAddWord);
 
             //---------------------
@@ -300,13 +330,11 @@ namespace Delphi
             pnlAddExpression.Controls.Add(UCAddExpression);
             UCAddExpression.Anchor = AnchorStyles.Top | AnchorStyles.Left;
 
-
+            initPnl(pnlAddExpression);
             visualized_controls.Add(pnlAddExpression);
             this.Controls.Add(pnlAddExpression);
 
             //init pnlAdd
-            pnlAddExpression.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-            pnlAddExpression.AutoSize = true;
             pnlMain.Controls.Add(pnlAddExpression);
 
 
@@ -320,13 +348,11 @@ namespace Delphi
             pnlAddNovel.Controls.Add(UCAddNovel);
             UCAddNovel.Anchor = AnchorStyles.Top | AnchorStyles.Left;
 
-
+            initPnl(pnlAddNovel);
             visualized_controls.Add(pnlAddNovel);
             this.Controls.Add(pnlAddNovel);
 
             //init pnlAdd
-            pnlAddNovel.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-            pnlAddNovel.AutoSize = true;
             pnlMain.Controls.Add(pnlAddNovel);
 
 
@@ -349,15 +375,8 @@ namespace Delphi
             pnlAddDictionary.AutoSize = true;
             pnlMain.Controls.Add(pnlAddDictionary);
 
-
-
-
             //adding panelAddChoice
             visualized_controls.Add(pnlAddChoice);
-
-
-
-
 
             //---------------------------------
             //init and add scrollbar
@@ -476,17 +495,39 @@ namespace Delphi
                 pnlSearch.Visible = true;
             }
 
-            if (PNL_VIEW == controlID)
+            if (PNL_VIEW_WORD == controlID)
             {
-                pnlView.Visible = true;
+                pnlWordView.Visible = true;
             }
 
-            if (PNL_EDIT == controlID)
+            if (PNL_VIEW_EXPRESSION == controlID)
             {
-                pnlEdit.Visible = true;
+                pnlExpView.Visible = true;
             }
 
-            if(PNL_ADD_WORD == controlID)
+            if (PNL_VIEW_NOVEL == controlID)
+            {
+                pnlNovelView.Visible = true;
+            }
+
+            if (PNL_EDIT_WORD == controlID)
+            {
+                pnlWordEdit.Visible = true;
+            }
+
+
+            if (PNL_EDIT_EXPRESSION == controlID)
+            {
+                pnlExpEdit.Visible = true;
+            }
+
+            if (PNL_EDIT_NOVEL == controlID)
+            {
+                pnlNovelEdit.Visible = true;
+            }
+
+
+            if (PNL_ADD_WORD == controlID)
             {
                 pnlAddWord.Visible = true;
             }

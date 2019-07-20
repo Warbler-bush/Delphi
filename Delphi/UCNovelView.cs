@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Datastructure;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using WinFormUtilities;
@@ -15,6 +16,7 @@ namespace Delphi
         public void setNovel(Datastructure.Novel nvl)
         {
 
+            pnlView.Height = 600;
             lblTitle.Text = nvl.title;
             lblAutoreText.Text = nvl.author;
 
@@ -29,9 +31,17 @@ namespace Delphi
 
             txtTextText.Text = nvl.text;
             location = basicUtilities.resizeTextBox(txtTextText);
+            lblTranslation.Location = new Point(location.Item1, location.Item2+5);
+            
+            txtTranslation.Text = "";
+            foreach (Translation trans in nvl.getTranslations())
+                txtTranslation.Text += trans.getTranslated().title + ",";
+
+            txtTranslation.Text = txtTranslation.Text.Remove(txtTranslation.Text.Length - 1);
+            location = basicUtilities.resizeTextBox(txtTranslation);
 
             // 20 px la distanza in verticale.
-            pnlView.Height = txtTextText.Location.Y + 10;
+            pnlView.Height = txtTranslation.Location.Y + 10;
         }
     }
 }

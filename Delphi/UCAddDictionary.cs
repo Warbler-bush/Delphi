@@ -10,17 +10,14 @@ namespace Delphi
 
         private DictBuilder dictBuilder = null;
         private DictManger manger = DictManger.Manager();
-        //
-        //es -> spanish
-        //
-        private List<string> languages = new List<string>{ "it","en","de","fr","es"};
+        
 
         public UCAddDictionary()
         {
             InitializeComponent();
             dictBuilder = DictBuilder.dictBuilder();
-            cmbLanguage.Items.AddRange(languages.ToArray());
-            cmbLanguage.SelectedItem = languages[0];
+            cmbLanguage.Items.AddRange(Dictionary.languages.ToArray());
+            cmbLanguage.SelectedItem = Dictionary.languages[0];
         }
 
         // si pressupone di effettuare i controlli nel builder.

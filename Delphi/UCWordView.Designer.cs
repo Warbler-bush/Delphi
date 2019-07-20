@@ -40,13 +40,14 @@
             this.lblType = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtTranslation = new System.Windows.Forms.TextBox();
+            this.lblTranslation = new System.Windows.Forms.Label();
             this.pnlView.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlView
             // 
-            this.pnlView.AutoScroll = true;
             this.pnlView.AutoSize = true;
             this.pnlView.Controls.Add(this.txtDefinitionsText);
             this.pnlView.Controls.Add(this.txtFormsText);
@@ -58,9 +59,10 @@
             this.pnlView.Controls.Add(this.lblOrigin);
             this.pnlView.Controls.Add(this.lblType);
             this.pnlView.Controls.Add(this.lblTitle);
+            this.pnlView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlView.Location = new System.Drawing.Point(0, 0);
             this.pnlView.Name = "pnlView";
-            this.pnlView.Size = new System.Drawing.Size(385, 550);
+            this.pnlView.Size = new System.Drawing.Size(385, 598);
             this.pnlView.TabIndex = 0;
             // 
             // txtDefinitionsText
@@ -169,24 +171,48 @@
             this.lblTitle.Size = new System.Drawing.Size(93, 33);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Titolo";
+            this.lblTitle.Click += new System.EventHandler(this.lblTitle_Click);
             // 
             // panel1
             // 
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.txtTranslation);
+            this.panel1.Controls.Add(this.lblTranslation);
             this.panel1.Controls.Add(this.pnlView);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(385, 530);
+            this.panel1.Size = new System.Drawing.Size(385, 598);
             this.panel1.TabIndex = 1;
+            // 
+            // txtTranslation
+            // 
+            this.txtTranslation.BackColor = System.Drawing.Color.LightGray;
+            this.txtTranslation.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTranslation.Location = new System.Drawing.Point(20, 556);
+            this.txtTranslation.Name = "txtTranslation";
+            this.txtTranslation.ReadOnly = true;
+            this.txtTranslation.Size = new System.Drawing.Size(337, 29);
+            this.txtTranslation.TabIndex = 11;
+            // 
+            // lblTranslation
+            // 
+            this.lblTranslation.AutoSize = true;
+            this.lblTranslation.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTranslation.Location = new System.Drawing.Point(15, 528);
+            this.lblTranslation.Name = "lblTranslation";
+            this.lblTranslation.Size = new System.Drawing.Size(138, 25);
+            this.lblTranslation.TabIndex = 10;
+            this.lblTranslation.Text = "TRADUZIONI";
             // 
             // UCWordView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
+            this.MaximumSize = new System.Drawing.Size(385, 598);
             this.Name = "UCWordView";
-            this.Size = new System.Drawing.Size(385, 530);
+            this.Size = new System.Drawing.Size(385, 598);
             this.pnlView.ResumeLayout(false);
             this.pnlView.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -209,5 +235,7 @@
         private System.Windows.Forms.Label lblType;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox txtTranslation;
+        private System.Windows.Forms.Label lblTranslation;
     }
 }

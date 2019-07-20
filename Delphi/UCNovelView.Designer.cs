@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlView = new System.Windows.Forms.Panel();
+            this.lblAutore = new System.Windows.Forms.Label();
             this.lblAutoreText = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.txtTextText = new System.Windows.Forms.TextBox();
@@ -37,12 +38,15 @@
             this.lblText = new System.Windows.Forms.Label();
             this.lblNota = new System.Windows.Forms.Label();
             this.lblOrigin = new System.Windows.Forms.Label();
-            this.lblAutore = new System.Windows.Forms.Label();
+            this.txtTranslation = new System.Windows.Forms.TextBox();
+            this.lblTranslation = new System.Windows.Forms.Label();
             this.pnlView.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlView
             // 
+            this.pnlView.Controls.Add(this.txtTranslation);
+            this.pnlView.Controls.Add(this.lblTranslation);
             this.pnlView.Controls.Add(this.lblAutore);
             this.pnlView.Controls.Add(this.lblAutoreText);
             this.pnlView.Controls.Add(this.lblTitle);
@@ -55,8 +59,18 @@
             this.pnlView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlView.Location = new System.Drawing.Point(0, 0);
             this.pnlView.Name = "pnlView";
-            this.pnlView.Size = new System.Drawing.Size(368, 513);
+            this.pnlView.Size = new System.Drawing.Size(368, 588);
             this.pnlView.TabIndex = 0;
+            // 
+            // lblAutore
+            // 
+            this.lblAutore.AutoSize = true;
+            this.lblAutore.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAutore.Location = new System.Drawing.Point(14, 57);
+            this.lblAutore.Name = "lblAutore";
+            this.lblAutore.Size = new System.Drawing.Size(61, 20);
+            this.lblAutore.TabIndex = 39;
+            this.lblAutore.Text = "Autore:";
             // 
             // lblAutoreText
             // 
@@ -144,23 +158,34 @@
             this.lblOrigin.TabIndex = 31;
             this.lblOrigin.Text = "ORIGINE";
             // 
-            // lblAutore
+            // txtTranslation
             // 
-            this.lblAutore.AutoSize = true;
-            this.lblAutore.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAutore.Location = new System.Drawing.Point(14, 57);
-            this.lblAutore.Name = "lblAutore";
-            this.lblAutore.Size = new System.Drawing.Size(61, 20);
-            this.lblAutore.TabIndex = 39;
-            this.lblAutore.Text = "Autore:";
+            this.txtTranslation.BackColor = System.Drawing.Color.LightGray;
+            this.txtTranslation.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTranslation.Location = new System.Drawing.Point(18, 550);
+            this.txtTranslation.Name = "txtTranslation";
+            this.txtTranslation.ReadOnly = true;
+            this.txtTranslation.Size = new System.Drawing.Size(337, 29);
+            this.txtTranslation.TabIndex = 41;
+            // 
+            // lblTranslation
+            // 
+            this.lblTranslation.AutoSize = true;
+            this.lblTranslation.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTranslation.Location = new System.Drawing.Point(13, 522);
+            this.lblTranslation.Name = "lblTranslation";
+            this.lblTranslation.Size = new System.Drawing.Size(138, 25);
+            this.lblTranslation.TabIndex = 40;
+            this.lblTranslation.Text = "TRADUZIONI";
             // 
             // UCNovelView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnlView);
+            this.MaximumSize = new System.Drawing.Size(385, 598);
             this.Name = "UCNovelView";
-            this.Size = new System.Drawing.Size(368, 513);
+            this.Size = new System.Drawing.Size(368, 588);
             this.pnlView.ResumeLayout(false);
             this.pnlView.PerformLayout();
             this.ResumeLayout(false);
@@ -179,5 +204,7 @@
         private System.Windows.Forms.Label lblNota;
         private System.Windows.Forms.Label lblOrigin;
         private System.Windows.Forms.Label lblAutore;
+        private System.Windows.Forms.TextBox txtTranslation;
+        private System.Windows.Forms.Label lblTranslation;
     }
 }

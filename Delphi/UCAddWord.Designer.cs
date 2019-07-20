@@ -32,6 +32,8 @@
             this.txtNote = new System.Windows.Forms.TextBox();
             this.lblNote = new System.Windows.Forms.Label();
             this.pnlDef = new System.Windows.Forms.Panel();
+            this.cmbLanguage = new System.Windows.Forms.ComboBox();
+            this.lblLanguage = new System.Windows.Forms.Label();
             this.txtTradu = new System.Windows.Forms.TextBox();
             this.lblTran = new System.Windows.Forms.Label();
             this.lblHint = new System.Windows.Forms.Label();
@@ -59,7 +61,7 @@
             // btnAddWord
             // 
             this.btnAddWord.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddWord.Location = new System.Drawing.Point(286, 539);
+            this.btnAddWord.Location = new System.Drawing.Point(286, 565);
             this.btnAddWord.Name = "btnAddWord";
             this.btnAddWord.Size = new System.Drawing.Size(80, 26);
             this.btnAddWord.TabIndex = 5;
@@ -71,7 +73,7 @@
             // 
             this.txtNote.BackColor = System.Drawing.Color.White;
             this.txtNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNote.Location = new System.Drawing.Point(7, 424);
+            this.txtNote.Location = new System.Drawing.Point(7, 450);
             this.txtNote.Multiline = true;
             this.txtNote.Name = "txtNote";
             this.txtNote.Size = new System.Drawing.Size(357, 46);
@@ -81,7 +83,7 @@
             // 
             this.lblNote.AutoSize = true;
             this.lblNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNote.Location = new System.Drawing.Point(3, 401);
+            this.lblNote.Location = new System.Drawing.Point(3, 427);
             this.lblNote.Name = "lblNote";
             this.lblNote.Size = new System.Drawing.Size(47, 20);
             this.lblNote.TabIndex = 24;
@@ -90,6 +92,8 @@
             // pnlDef
             // 
             this.pnlDef.BackColor = System.Drawing.Color.White;
+            this.pnlDef.Controls.Add(this.cmbLanguage);
+            this.pnlDef.Controls.Add(this.lblLanguage);
             this.pnlDef.Controls.Add(this.txtTradu);
             this.pnlDef.Controls.Add(this.lblTran);
             this.pnlDef.Controls.Add(this.lblHint);
@@ -102,8 +106,26 @@
             this.pnlDef.Controls.Add(this.lblDefinizione);
             this.pnlDef.Location = new System.Drawing.Point(0, 41);
             this.pnlDef.Name = "pnlDef";
-            this.pnlDef.Size = new System.Drawing.Size(385, 267);
+            this.pnlDef.Size = new System.Drawing.Size(385, 294);
             this.pnlDef.TabIndex = 1;
+            // 
+            // cmbLanguage
+            // 
+            this.cmbLanguage.FormattingEnabled = true;
+            this.cmbLanguage.Location = new System.Drawing.Point(95, 231);
+            this.cmbLanguage.Name = "cmbLanguage";
+            this.cmbLanguage.Size = new System.Drawing.Size(112, 21);
+            this.cmbLanguage.TabIndex = 14;
+            // 
+            // lblLanguage
+            // 
+            this.lblLanguage.AutoSize = true;
+            this.lblLanguage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLanguage.Location = new System.Drawing.Point(3, 229);
+            this.lblLanguage.Name = "lblLanguage";
+            this.lblLanguage.Size = new System.Drawing.Size(61, 20);
+            this.lblLanguage.TabIndex = 13;
+            this.lblLanguage.Text = "Lingua:";
             // 
             // txtTradu
             // 
@@ -136,7 +158,7 @@
             // btnAddDef
             // 
             this.btnAddDef.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddDef.Location = new System.Drawing.Point(7, 230);
+            this.btnAddDef.Location = new System.Drawing.Point(7, 258);
             this.btnAddDef.Name = "btnAddDef";
             this.btnAddDef.Size = new System.Drawing.Size(136, 23);
             this.btnAddDef.TabIndex = 4;
@@ -148,18 +170,18 @@
             // 
             this.txtContra.BackColor = System.Drawing.Color.White;
             this.txtContra.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContra.Location = new System.Drawing.Point(73, 148);
+            this.txtContra.Location = new System.Drawing.Point(95, 148);
             this.txtContra.Name = "txtContra";
-            this.txtContra.Size = new System.Drawing.Size(285, 23);
+            this.txtContra.Size = new System.Drawing.Size(263, 23);
             this.txtContra.TabIndex = 2;
             // 
             // txtSino
             // 
             this.txtSino.BackColor = System.Drawing.Color.White;
             this.txtSino.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSino.Location = new System.Drawing.Point(73, 119);
+            this.txtSino.Location = new System.Drawing.Point(95, 119);
             this.txtSino.Name = "txtSino";
-            this.txtSino.Size = new System.Drawing.Size(285, 23);
+            this.txtSino.Size = new System.Drawing.Size(263, 23);
             this.txtSino.TabIndex = 1;
             // 
             // lblCon
@@ -206,7 +228,7 @@
             // 
             this.txtOri.BackColor = System.Drawing.Color.White;
             this.txtOri.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOri.Location = new System.Drawing.Point(7, 335);
+            this.txtOri.Location = new System.Drawing.Point(7, 361);
             this.txtOri.Multiline = true;
             this.txtOri.Name = "txtOri";
             this.txtOri.Size = new System.Drawing.Size(357, 55);
@@ -216,7 +238,7 @@
             // 
             this.lblOri.AutoSize = true;
             this.lblOri.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOri.Location = new System.Drawing.Point(3, 312);
+            this.lblOri.Location = new System.Drawing.Point(3, 338);
             this.lblOri.Name = "lblOri";
             this.lblOri.Size = new System.Drawing.Size(63, 20);
             this.lblOri.TabIndex = 21;
@@ -264,7 +286,7 @@
             // 
             this.lblForma.AutoSize = true;
             this.lblForma.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblForma.Location = new System.Drawing.Point(3, 485);
+            this.lblForma.Location = new System.Drawing.Point(3, 511);
             this.lblForma.Name = "lblForma";
             this.lblForma.Size = new System.Drawing.Size(59, 20);
             this.lblForma.TabIndex = 26;
@@ -272,14 +294,14 @@
             // 
             // txtForm
             // 
-            this.txtForm.Location = new System.Drawing.Point(101, 487);
+            this.txtForm.Location = new System.Drawing.Point(101, 513);
             this.txtForm.Name = "txtForm";
             this.txtForm.Size = new System.Drawing.Size(263, 20);
             this.txtForm.TabIndex = 27;
             // 
             // txtTypeForm
             // 
-            this.txtTypeForm.Location = new System.Drawing.Point(101, 513);
+            this.txtTypeForm.Location = new System.Drawing.Point(101, 539);
             this.txtTypeForm.Name = "txtTypeForm";
             this.txtTypeForm.Size = new System.Drawing.Size(263, 20);
             this.txtTypeForm.TabIndex = 29;
@@ -288,7 +310,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 513);
+            this.label1.Location = new System.Drawing.Point(3, 539);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(93, 20);
             this.label1.TabIndex = 28;
@@ -297,7 +319,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(98, 536);
+            this.label2.Location = new System.Drawing.Point(98, 562);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(158, 13);
             this.label2.TabIndex = 31;
@@ -324,7 +346,7 @@
             this.Controls.Add(this.txtWord);
             this.Controls.Add(this.lblWord);
             this.Name = "UCAddWord";
-            this.Size = new System.Drawing.Size(367, 536);
+            this.Size = new System.Drawing.Size(367, 602);
             this.pnlDef.ResumeLayout(false);
             this.pnlDef.PerformLayout();
             this.ResumeLayout(false);
@@ -359,5 +381,7 @@
         private System.Windows.Forms.TextBox txtTypeForm;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblLanguage;
+        private System.Windows.Forms.ComboBox cmbLanguage;
     }
 }

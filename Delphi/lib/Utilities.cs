@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Datastructure;
 
 namespace Utility
@@ -57,7 +58,7 @@ namespace Utility
         static private string SHOW = "show";
         static private string CHANGE = "change";
 
-        //flag for dict is -dtc
+        //flag for dict is -z
 
         // heading
         static private string HEAD = "Delphi [Versione 1.0.0]";
@@ -178,7 +179,7 @@ namespace Utility
                     return 0;
                 }
 
-                if(flags[0] == "-dct")
+                if(flags[0] == "-z")
                 {
                     if(paramss == null || paramss.Count != 2)
                     {
@@ -192,6 +193,7 @@ namespace Utility
                         setLanguage(paramss[1]).
                         build()
                     );
+                    return 0;
                 }
 
 
@@ -268,11 +270,11 @@ namespace Utility
                 /*-----------------------
                   ADD TRANSLATION  need to be re-thought
                  ------------------------*/
-                if (flags[0] == "-wt")
+                if (flags[0] == "-t")
                 {
                     if (paramss == null || paramss.Count > 4 || paramss.Count < 2)
                     {
-                        Console.WriteLine("USAGE: add -wt WORD TRANSLATED LANG [N.DEFINITION]");
+                        Console.WriteLine("USAGE: add -t WORD TRANSLATED LANG [N.DEFINITION]");
                         return 0;
                     }
 
@@ -298,7 +300,7 @@ namespace Utility
 
                     Word translated = (Word)tuple.Item1[idx];
                     Definition def = wrd.getDefinition(paramss.Count == 4 ? Int32.Parse(paramss[3]) : 0);
-                    def.addTranslation(new Translation(paramss[2],translated) );
+                    wrd.addTranslation(new Translation(paramss[2],translated),wrd.indexOfDef(def));
                 }
 
                 Text txt = null;
@@ -442,7 +444,7 @@ namespace Utility
                    * LIST DICTIONARIES command
                    * --------------------------*/
 
-                if(flags[0] == "-dct")
+                if(flags[0] == "-z")
                 {
                     Console.WriteLine(dictManger.listDicts());
                     return 0;
@@ -863,7 +865,8 @@ namespace Utility
     {
         static protected TextBuilder txtBuilder = null;
         protected Text txtText = null;
-
+        static public Regex rgx = new Regex(@"^[a-zA-Z0-9_;]+$");
+        static public Regex rgxText = new Regex(@"^[a-zA-Z0-9_\n]+$");
 
         protected TextBuilder()
         {
@@ -897,8 +900,20 @@ namespace Utility
         public Text build()
         {
             Text ret = getText();
+            foreach (Translation trans in ret.getTranslations())
+                trans.getTranslated().addTranslation(new Translation(DictManger.Manager().CurDict().Language, ret));
             newText();
             return ret;
+        }
+
+        public TextBuilder addTranslation(Translation trans)
+        {
+            if(trans == null) { 
+                txtText.addTranslation(trans);
+                return null;
+            }
+
+            return this;
         }
 
         protected abstract void newText();
@@ -1023,6 +1038,16 @@ namespace Utility
         public Word getText()
         {
             return (Word)(base.getText());
+        }
+
+        public WordBuilder addTranslation(Translation trans,int def_idx)
+        {
+            if(trans != null) { 
+                ((Word)txtText).addTranslation(trans, def_idx);
+                return this;
+            }
+
+            return null;
         }
     }
 

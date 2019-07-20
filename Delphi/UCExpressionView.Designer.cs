@@ -38,11 +38,15 @@
             this.lblExplanation = new System.Windows.Forms.Label();
             this.lblNota = new System.Windows.Forms.Label();
             this.lblOrigin = new System.Windows.Forms.Label();
+            this.txtTranslation = new System.Windows.Forms.TextBox();
+            this.lblTranslation = new System.Windows.Forms.Label();
             this.pnlView.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlView
             // 
+            this.pnlView.Controls.Add(this.txtTranslation);
+            this.pnlView.Controls.Add(this.lblTranslation);
             this.pnlView.Controls.Add(this.lblTitle);
             this.pnlView.Controls.Add(this.txtTextText);
             this.pnlView.Controls.Add(this.txtExplanationText);
@@ -55,7 +59,7 @@
             this.pnlView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlView.Location = new System.Drawing.Point(0, 0);
             this.pnlView.Name = "pnlView";
-            this.pnlView.Size = new System.Drawing.Size(385, 530);
+            this.pnlView.Size = new System.Drawing.Size(385, 598);
             this.pnlView.TabIndex = 0;
             // 
             // lblTitle
@@ -155,13 +159,34 @@
             this.lblOrigin.TabIndex = 12;
             this.lblOrigin.Text = "ORIGINE";
             // 
+            // txtTranslation
+            // 
+            this.txtTranslation.BackColor = System.Drawing.Color.LightGray;
+            this.txtTranslation.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTranslation.Location = new System.Drawing.Point(26, 558);
+            this.txtTranslation.Name = "txtTranslation";
+            this.txtTranslation.ReadOnly = true;
+            this.txtTranslation.Size = new System.Drawing.Size(337, 29);
+            this.txtTranslation.TabIndex = 22;
+            // 
+            // lblTranslation
+            // 
+            this.lblTranslation.AutoSize = true;
+            this.lblTranslation.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTranslation.Location = new System.Drawing.Point(21, 530);
+            this.lblTranslation.Name = "lblTranslation";
+            this.lblTranslation.Size = new System.Drawing.Size(138, 25);
+            this.lblTranslation.TabIndex = 21;
+            this.lblTranslation.Text = "TRADUZIONI";
+            // 
             // UCExpressionView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnlView);
+            this.MaximumSize = new System.Drawing.Size(385, 598);
             this.Name = "UCExpressionView";
-            this.Size = new System.Drawing.Size(385, 530);
+            this.Size = new System.Drawing.Size(385, 598);
             this.pnlView.ResumeLayout(false);
             this.pnlView.PerformLayout();
             this.ResumeLayout(false);
@@ -180,5 +205,7 @@
         private System.Windows.Forms.Label lblNota;
         private System.Windows.Forms.Label lblOrigin;
         private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.TextBox txtTranslation;
+        private System.Windows.Forms.Label lblTranslation;
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
 
 using Utility;
 using Datastructure;
@@ -13,9 +12,8 @@ namespace Delphi
 
         private WordBuilder wrdBuilder;
         private DelphiMain delphiMain;
-        private Regex rgx = new Regex(@"^[a-zA-Z0-9_;]+$");
-        private Regex rgxText = new Regex(@"^[a-zA-Z0-9_ \n]+$");
         private DictManger dictManger = DictManger.Manager();
+        private int cntDef = 0;
 
         public void bindDelphiMain(DelphiMain delphi)
         { delphiMain = delphi;}
@@ -29,35 +27,39 @@ namespace Delphi
         private void initComponents()
         {
             wrdBuilder = WordBuilder.wordBuilder();
-            txtTradu.Enabled = false;
            
-            cmbTipo.Items.AddRange(Datastructure.Dict_ITA.POS.ToArray());
+            cmbTipo.Items.AddRange(Dict_ITA.POS.ToArray());
+            cmbTipo.SelectedItem = Dict_ITA.POS[0];
+
+            cmbLanguage.Items.AddRange(Dictionary.languages.ToArray());
+            cmbLanguage.SelectedItem = Dictionary.languages[0];
         }
 
         private void btnAddWord_Click(object sender, EventArgs e)
         {
             
-            if (rgx.IsMatch(txtWord.Text))
+            if (TextBuilder.rgx.IsMatch(txtWord.Text))
             {
                 wrdBuilder.setTitle(txtWord.Text);
 
-                if (rgxText.IsMatch(txtOri.Text))
+                if (TextBuilder.rgxText.IsMatch(txtOri.Text))
                     wrdBuilder.setOrigin(txtOri.Text);
                 else wrdBuilder.setOrigin("");
 
-                if (rgxText.IsMatch(txtNote.Text))
+                if (TextBuilder.rgxText.IsMatch(txtNote.Text))
                     wrdBuilder.setNote(txtNote.Text);
                 else wrdBuilder.setNote("");
 
                 addForm();
-                
-                dictManger.CurDict().add(wrdBuilder.build());
+
+                wrdBuilder.setType((string)cmbTipo.SelectedItem);
+                Word wrd = (Word)wrdBuilder.build();
+                dictManger.CurDict().add(wrd);
+
                 clrTextFields();
             }
-            else
-            {
-                MessageBox.Show("Inserire una parola!");
-            }
+            else MessageBox.Show("Inserire una parola adatta!");
+            
 
             
         }
@@ -73,10 +75,12 @@ namespace Delphi
         private void btnAddDef_Click(object sender, EventArgs e)
         {
 
-            if(rgxText.IsMatch(txtDefinizione.Text)  )
+            if(TextBuilder.rgxText.IsMatch(txtDefinizione.Text)  )
             {
                 Definition defDef = new Definition(txtDefinizione.Text);
-                if ( txtSino.Text.Length != 0 && rgx.IsMatch(txtSino.Text))
+                
+                // insert synonyms
+                if ( txtSino.Text.Length != 0 && TextBuilder.rgx.IsMatch(txtSino.Text))
                 {
                     string line = txtSino.Text;
                     if ( line.ElementAt(line.Length-1 ) == ';' )
@@ -96,18 +100,17 @@ namespace Delphi
                             Console.WriteLine(syn + " Non trovato");
                         }
                     }
-
-
                 }
 
 
-                if (rgx.IsMatch(txtContra.Text))
+                // insert contradiction
+                if (TextBuilder.rgx.IsMatch(txtContra.Text))
                 {
                     string line = txtContra.Text;
                     if (line.ElementAt(line.Length - 1) == ';')
                         line.Remove(line.Length - 1);
-                    string[] contraries = line.Split(';');
 
+                    string[] contraries = line.Split(';');
                     foreach (string ctr in contraries)
                     {
                         Word wrd = dictManger.CurDict().findWord(ctr);
@@ -121,35 +124,58 @@ namespace Delphi
                             Console.WriteLine(ctr + " Non trovato");
                         }
                     }
-
-                }
-
-                if (rgx.IsMatch(txtTradu.Text))
-                {
-
                 }
 
                 wrdBuilder.addDefinition(defDef);
+
+
+                if (TextBuilder.rgx.IsMatch(txtTradu.Text))
+                {
+                    string line = txtTradu.Text;
+                    if (line.ElementAt(line.Length - 1) == ';')
+                        line.Remove(line.Length - 1);
+
+                    string language = (string)cmbLanguage.SelectedItem;
+                    string[] translations = line.Split(';');
+                    foreach (string tra in translations)
+                    {
+                        for(int cntDict = 0; cntDict < dictManger.getDictCount(); cntDict++)
+                        {
+                            Dictionary dict = dictManger.getDict(cntDict);
+                            if (dict.Language == language )
+                            {
+                                Text found = dict.find(tra);
+                                if(found != null && found.GetType() == typeof(Word) ) {
+                                    wrdBuilder.addTranslation(new Translation(cntDict,language, found),cntDef);
+                                    break;
+                                }
+                            }
+
+                        }
+                    }
+
+                }
+
+                cntDef++;
                 clrDef();
             }
             else
             {
-                MessageBox.Show("Inserire la definizione!");
+                MessageBox.Show("Inserire una definizione!");
             }
         }
 
-        private void clrDef()
-        {
-            txtDefinizione.Clear();
-            txtTradu.Clear();
-            txtSino.Clear();
-            txtContra.Clear();
-        }
+
 
         private void addForm()
         {
+            if (string.IsNullOrWhiteSpace(txtForm.Text) || string.IsNullOrWhiteSpace(txtTypeForm.Text))
+                return;
+            
 
-            if (rgxText.IsMatch(txtForm.Text) && rgxText.IsMatch(txtTypeForm.Text))
+
+
+            if (TextBuilder.rgxText.IsMatch(txtForm.Text) && TextBuilder.rgxText.IsMatch(txtTypeForm.Text))
             {
                 if (txtForm.Text.Length != 0 && txtTypeForm.Text.Length != 0)
                 {
@@ -176,12 +202,16 @@ namespace Delphi
                         }
                     }
                 }
+            }
 
-            }
-            else
-            {
-                MessageBox.Show("Inserire la form e i loro tipi!");
-            }
+        }
+
+        private void clrDef()
+        {
+            txtDefinizione.Clear();
+            txtTradu.Clear();
+            txtSino.Clear();
+            txtContra.Clear();
         }
     }
 }

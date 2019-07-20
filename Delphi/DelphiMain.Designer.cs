@@ -49,6 +49,7 @@
             this.btnOptions = new System.Windows.Forms.PictureBox();
             this.btnAdd = new System.Windows.Forms.PictureBox();
             this.pnlMain = new System.Windows.Forms.Panel();
+            this.txtMain = new System.Windows.Forms.RichTextBox();
             this.pnlAddChoice = new System.Windows.Forms.Panel();
             this.lblAddDictionary = new System.Windows.Forms.Label();
             this.lblAddNovel = new System.Windows.Forms.Label();
@@ -58,7 +59,6 @@
             this.btnNovel = new System.Windows.Forms.PictureBox();
             this.btnExpression = new System.Windows.Forms.PictureBox();
             this.btnWord = new System.Windows.Forms.PictureBox();
-            this.txtMain = new System.Windows.Forms.RichTextBox();
             this.pnlAll.SuspendLayout();
             this.table.SuspendLayout();
             this.pnlMenu.SuspendLayout();
@@ -80,7 +80,7 @@
             this.pnlAll.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlAll.Location = new System.Drawing.Point(0, 0);
             this.pnlAll.Name = "pnlAll";
-            this.pnlAll.Size = new System.Drawing.Size(390, 627);
+            this.pnlAll.Size = new System.Drawing.Size(400, 627);
             this.pnlAll.TabIndex = 3;
             // 
             // table
@@ -99,7 +99,7 @@
             this.table.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.table.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.table.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.table.Size = new System.Drawing.Size(390, 623);
+            this.table.Size = new System.Drawing.Size(400, 623);
             this.table.TabIndex = 2;
             // 
             // pnlMenu
@@ -120,14 +120,14 @@
             this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMenu.Location = new System.Drawing.Point(3, 3);
             this.pnlMenu.Name = "pnlMenu";
-            this.pnlMenu.Size = new System.Drawing.Size(384, 46);
+            this.pnlMenu.Size = new System.Drawing.Size(394, 46);
             this.pnlMenu.TabIndex = 3;
             // 
             // lblAll
             // 
             this.lblAll.AutoSize = true;
             this.lblAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAll.Location = new System.Drawing.Point(294, 32);
+            this.lblAll.Location = new System.Drawing.Point(310, 32);
             this.lblAll.Name = "lblAll";
             this.lblAll.Size = new System.Drawing.Size(17, 16);
             this.lblAll.TabIndex = 45;
@@ -137,7 +137,7 @@
             // txtSearched
             // 
             this.txtSearched.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearched.Location = new System.Drawing.Point(200, 3);
+            this.txtSearched.Location = new System.Drawing.Point(216, 3);
             this.txtSearched.Name = "txtSearched";
             this.txtSearched.Size = new System.Drawing.Size(144, 26);
             this.txtSearched.TabIndex = 44;
@@ -160,7 +160,7 @@
             // 
             this.lblExpre.AutoSize = true;
             this.lblExpre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExpre.Location = new System.Drawing.Point(337, 32);
+            this.lblExpre.Location = new System.Drawing.Point(353, 32);
             this.lblExpre.Name = "lblExpre";
             this.lblExpre.Size = new System.Drawing.Size(17, 16);
             this.lblExpre.TabIndex = 40;
@@ -171,7 +171,7 @@
             // 
             this.lblNovel.AutoSize = true;
             this.lblNovel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNovel.Location = new System.Drawing.Point(357, 32);
+            this.lblNovel.Location = new System.Drawing.Point(373, 32);
             this.lblNovel.Name = "lblNovel";
             this.lblNovel.Size = new System.Drawing.Size(18, 16);
             this.lblNovel.TabIndex = 41;
@@ -182,7 +182,7 @@
             // 
             this.lblWord.AutoSize = true;
             this.lblWord.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWord.Location = new System.Drawing.Point(317, 32);
+            this.lblWord.Location = new System.Drawing.Point(333, 32);
             this.lblWord.Name = "lblWord";
             this.lblWord.Size = new System.Drawing.Size(17, 16);
             this.lblWord.TabIndex = 39;
@@ -195,7 +195,7 @@
             this.btnSearch.FlatAppearance.BorderSize = 0;
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
-            this.btnSearch.Location = new System.Drawing.Point(341, 3);
+            this.btnSearch.Location = new System.Drawing.Point(357, 3);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(34, 26);
             this.btnSearch.TabIndex = 38;
@@ -265,7 +265,7 @@
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBottom.Location = new System.Drawing.Point(3, 583);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(384, 37);
+            this.pnlBottom.Size = new System.Drawing.Size(394, 37);
             this.pnlBottom.TabIndex = 4;
             // 
             // lblDictName
@@ -315,14 +315,28 @@
             // 
             // pnlMain
             // 
-            this.pnlMain.AutoScroll = true;
             this.pnlMain.Controls.Add(this.txtMain);
             this.pnlMain.Controls.Add(this.pnlAddChoice);
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(3, 55);
+            this.pnlMain.MaximumSize = new System.Drawing.Size(394, 522);
+            this.pnlMain.MinimumSize = new System.Drawing.Size(394, 522);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(384, 522);
+            this.pnlMain.Size = new System.Drawing.Size(394, 522);
             this.pnlMain.TabIndex = 5;
+            // 
+            // txtMain
+            // 
+            this.txtMain.BackColor = System.Drawing.Color.DimGray;
+            this.txtMain.Cursor = System.Windows.Forms.Cursors.Default;
+            this.txtMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtMain.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMain.ForeColor = System.Drawing.Color.White;
+            this.txtMain.Location = new System.Drawing.Point(0, 0);
+            this.txtMain.Name = "txtMain";
+            this.txtMain.Size = new System.Drawing.Size(394, 522);
+            this.txtMain.TabIndex = 4;
+            this.txtMain.Text = "";
             // 
             // pnlAddChoice
             // 
@@ -337,7 +351,7 @@
             this.pnlAddChoice.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlAddChoice.Location = new System.Drawing.Point(0, 0);
             this.pnlAddChoice.Name = "pnlAddChoice";
-            this.pnlAddChoice.Size = new System.Drawing.Size(384, 522);
+            this.pnlAddChoice.Size = new System.Drawing.Size(394, 522);
             this.pnlAddChoice.TabIndex = 16;
             // 
             // lblAddDictionary
@@ -424,33 +438,19 @@
             this.btnWord.TabStop = false;
             this.btnWord.Click += new System.EventHandler(this.btnWord_Click);
             // 
-            // txtMain
-            // 
-            this.txtMain.BackColor = System.Drawing.Color.DimGray;
-            this.txtMain.Cursor = System.Windows.Forms.Cursors.Default;
-            this.txtMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtMain.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMain.ForeColor = System.Drawing.Color.White;
-            this.txtMain.Location = new System.Drawing.Point(0, 0);
-            this.txtMain.Name = "txtMain";
-            this.txtMain.Size = new System.Drawing.Size(384, 522);
-            this.txtMain.TabIndex = 4;
-            this.txtMain.Text = "";
-            // 
             // DelphiMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(390, 627);
+            this.ClientSize = new System.Drawing.Size(400, 627);
             this.Controls.Add(this.pnlAll);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.KeyPreview = true;
-            this.MaximumSize = new System.Drawing.Size(410, 670);
-            this.MinimumSize = new System.Drawing.Size(410, 670);
+            this.MaximumSize = new System.Drawing.Size(420, 670);
+            this.MinimumSize = new System.Drawing.Size(420, 670);
             this.Name = "DelphiMain";
             this.Text = "Delphi";
-            this.Load += new System.EventHandler(this.DelphiMain_Load);
             this.pnlAll.ResumeLayout(false);
             this.pnlAll.PerformLayout();
             this.table.ResumeLayout(false);

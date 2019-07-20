@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Datastructure;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using WinFormUtilities;
@@ -15,7 +16,7 @@ namespace Delphi
 
         public void setExpression(Datastructure.Expression exp)
         {
-
+            pnlView.Height = 600;
             lblTitle.Text = exp.title;
             
             // ogni volta che richiamo risize, restituisco la stessa posizione ma con la X aggiunta di qualche punto
@@ -33,9 +34,17 @@ namespace Delphi
 
             txtTextText.Text = exp.text;
             location = basicUtilities.resizeTextBox(txtTextText);
+            lblTranslation.Location = new Point(location.Item1, location.Item2+5);
             
+            txtTranslation.Text = "";
+            foreach (Translation trans in exp.getTranslations())
+                txtTranslation.Text += trans.getTranslated().title + ",";
+
+            txtTranslation.Text = txtTranslation.Text.Remove(txtTranslation.Text.Length-1);
+            basicUtilities.resizeTextBox(txtTranslation);
             // 20 px la distanza in verticale.
-            pnlView.Height = txtTextText.Location.Y + 10;
+
+            pnlView.Height = txtTranslation.Location.Y + 10;
         }
     }
 }

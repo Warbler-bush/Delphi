@@ -78,6 +78,7 @@
     <Compile Include="DelphiMain.Designer.cs">
       <DependentUpon>DelphiMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="DelphiUI.cs" />
     <Compile Include="frmSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -232,6 +233,7 @@
     <Content Include="ChnCharInfo.XML" />
     <Content Include="delphi.txt" />
     <Content Include="input.txt" />
+    <Content Include="input1.txt" />
     <Content Include="input4.txt" />
   </ItemGroup>
   <ItemGroup>

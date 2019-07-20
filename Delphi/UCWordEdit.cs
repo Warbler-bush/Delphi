@@ -20,7 +20,7 @@ namespace Delphi
         {
             InitializeComponent();
             cmbTipo.Items.AddRange(Datastructure.Dict_ITA.POS.ToArray());
-            txtTradu.Enabled = false;
+            cmbLanguage.Items.AddRange(Dictionary.languages.ToArray());
         }
 
 
@@ -52,7 +52,15 @@ namespace Delphi
 
             if (txtContra.Text.Length > 0)
                 txtContra.Text.Remove(txtContra.Text.Length - 1);
+            
+            // translations
+            foreach(Translation tran in wrd.getTranslations(def))
+            {
+                txtTradu.Text += tran.getTranslated().title + ";";
+            }
 
+            if (txtContra.Text.Length > 0)
+                txtContra.Text.Remove(txtContra.Text.Length - 1);
 
         }
 
@@ -129,9 +137,11 @@ namespace Delphi
 
         private void cambiaDef()
         {
+
+            Definition defDef = wrd.getDefinition(curDef);
+
             if (rgxText.IsMatch(txtDefinizione.Text))
             {
-                Definition defDef = wrd.getDefinition(curDef);
 
                 defDef.definition = txtDefinizione.Text;
                 defDef.clearSynonyms();
@@ -187,8 +197,30 @@ namespace Delphi
 
                 if (rgx.IsMatch(txtTradu.Text))
                 {
+                    string line = txtTradu.Text;
+                    if (line.ElementAt(line.Length - 1) == ';')
+                        line.Remove(line.Length - 1);
 
-                }
+                    string language = (string)cmbLanguage.SelectedItem;
+                    string[] translations = line.Split(';');
+                    foreach (string tra in translations)
+                    {
+                        for (int cntDict = 0; cntDict < dictManger.getDictCount(); cntDict++)
+                        {
+                            Dictionary dict = dictManger.getDict(cntDict);
+                            if (dict.Language == language)
+                            {
+                                Text found = dict.find(tra);
+                                if (found != null && found.GetType() == typeof(Word))
+                                {
+                                    wrd.addTranslation(new Translation(cntDict, language, found),defDef);
+                                    break;
+                                }
+                            }
+
+                        }
+                    }
+            }
             }
             else
             {
@@ -199,6 +231,8 @@ namespace Delphi
         private void btnCambDef_Click(object sender, EventArgs e)
         {
             cambiaDef();
+
+            
         }
 
         private void btnOk_Click(object sender, EventArgs e)
@@ -207,6 +241,12 @@ namespace Delphi
             wrd.origin  = txtOrigine.Text;
             wrd.note    = txtNota.Text;
             cambiaDef();
+
+            string line = txtTradu.Text;
+            if (line.ElementAt(line.Length - 1) == ';')
+                line.Remove(line.Length - 1);
+
+            
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
